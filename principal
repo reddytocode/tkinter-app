@@ -1,0 +1,52 @@
+import tkinter as tk
+from PIL import Image, ImageTk
+
+#def newWindow(usr,psw):
+ #   print(usr,psw)
+
+
+window = tk.Tk()
+window.geometry("400x600")
+window.title("PROYECTO DE GRADO - LUIS ENRIQUE BALBOA FLORES")
+#window.attributes("-alpha", 0.5)
+#Fondo window principal
+
+imagen = Image.open("image/bgLogin.jpg")        #<<<<<<<< Cambiar
+imagen_de_fondo = ImageTk.PhotoImage(imagen)
+fondo = tk.Label(window, image=imagen_de_fondo)
+fondo.place(x=0, y=0, relwidth=1, relheight=1)
+
+def newWindow():
+    print(usr.get(),psw.get())
+    window2 = tk.Tk()
+    window2.geometry("500x600")
+    window2.title("MenuALV")
+    tk.Label(window2,text="NuevaVentana :3", bg='black',fg='white', font=('ArialBold',40)).place(x=0,y=0)
+
+    window.destroy()
+
+usr = tk.StringVar()
+psw = tk.StringVar()
+
+
+#tk.Frame(bg='yellow',width=50,height=50).grid(column=1,row=1)
+tk.Label(text="¡Bienvenido seas tu y tu vaca!",fg='navy',font=("ArialBold, 25")).place(x=32,y=100)
+tk.Label(text="Usuario",fg='navy',font=("ArialBold, 20")).place(x=40,y=300)
+tk.Label(text="Contraseña",fg='navy',font=("ArialBold, 20")).place(x=40,y=400)
+
+
+
+
+tk.Entry(window, textvariable=usr).place(x=160,y=300)
+tk.Entry(window,textvariable=psw).place(x=160,y=400)
+
+tk.Button(text='Iniciar sesión', fg='navy',bd=10,font=("ArialBold, 20"), height=2, width=20,command= newWindow).place(x=67,y=500)
+
+
+
+window.resizable(width=False, height=False)
+
+
+window.mainloop()
+
+
