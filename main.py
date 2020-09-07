@@ -25,9 +25,9 @@ class SampleApp(tk.Tk):
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        # self.show_frame("MainWindow")
+        self.show_frame("MainWindow")
         # self.show_frame("TakeHuella")
-        self.show_frame("ResultFrame")
+        # self.show_frame("ResultFrame")
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''

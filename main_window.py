@@ -2,7 +2,6 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 
-
 class MainWindow(tk.Frame):
     def resize_image(self, event):
         new_width = event.width
@@ -41,19 +40,18 @@ class MainWindow(tk.Frame):
             highlightbackground='#FBFF00',
             text='Carta Dermatoglifica',
             font=('Arial Rounded MT Bold', 14),
-            width=20
-            #   command = resultsWindow
-        ).place(x=30, y=30)
+            width=20,
+            command=lambda: self.controller.show_frame("ResultFrame")).place(x=30, y=30)
 
         # CONFIGURACION
-        btn_configuracion = tk.Button(
-            self,
-            highlightbackground='#04FEEF',
-            text='CONFIGURACIÓN',
-            font=('Arial Rounded MT Bold', 14),
-            width=20
-            #   command = configuracionWindow
-        ).place(x=500, y=30)
+        # btn_configuracion = tk.Button(
+        #     self,
+        #     highlightbackground='#04FEEF',
+        #     text='RESULTADOS',
+        #     font=('Arial Rounded MT Bold', 14),
+        #     width=20,
+        #     command = lambda: self.controller.show_frame("ResultFrame")
+        # ).place(x=500, y=30)
 
         # CAPTAR HUELLA
         btn_huella = tk.Button(
