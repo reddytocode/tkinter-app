@@ -1,42 +1,7 @@
 current_user = None
 
-def item_tabla(deporte, N, A, L, W, D10, SQTL):
-    return {
-        "deporte": deporte,
-        "N": N,
-        "A": A,
-        "L": L,
-        "W": W,
-        "D10": D10,
-        "SQTL": SQTL
-    }
+# search_in_table(17, 139, tabla)
 
-tabla = [
-    item_tabla("Voleibol (2000)", 22, 1.00, 65.00, 34.00, 13.4, 125.6),
-    item_tabla("Voleibol (1997)", 28, 0.70, 53.20, 46.10, 14.5, 133.8),
-    item_tabla("Voleibol Femenino", 12, 12.00, 59.00, 29.00, 11.8, 98.6),
-    item_tabla("Basquetbol", 35, 2.00, 60.00, 38.00, 12.6, 126.7),
-    item_tabla("Basquetbol Masculino", 12, 5.00, 69.20, 25.80, 12.1, 12.1),
-    item_tabla("Karate (1997)", 7, 0.00, 45.70, 54.30, 15.4, 159.7),
-    item_tabla("Boxeo (1997)", 5, 0.00, 46.00, 54.00, 15.4, 143.4)
-]
-
-def search_in_table(d10, sqtl, tabla):
-    def get_distance(item):
-        return abs(sqtl-item['SQTL']) + abs(d10-item['D10'])
-    opcion1 = None
-    opcion2 = None
-    param_1 = 10
-    for item in tabla:
-        distance = get_distance(item)
-        if(distance < param_1):
-            opcion2 = opcion1
-            opcion1 = item
-
-    print(opcion1)
-    print(opcion2)
-
-search_in_table(17, 139, tabla)
 
 class Dedo:
     def to_json(self):
@@ -50,6 +15,14 @@ class Dedo:
         self.category = None
         self.distance = 0
         self.huella_b64 = ""
+
+    @staticmethod
+    def create(category, distance, huella_b64):
+        dedo = Dedo()
+        dedo.category = category
+        dedo.distance = distance
+        dedo.huella_b64 = huella_b64
+        return dedo
 
     def is_valid(self):
         valid = self.category is not None
@@ -84,9 +57,78 @@ class User:
             "categ": self.categ,  # = {"arco": 0, "presilla": 0, "verticilo": 0}
             "d10": self.d10,
             "sqtl": self.sqtl,
+            "recomendacion1": self.recomendacion1,
+            "recomendacion2": self.recomendacion2
         }
 
+    def create(self, name, lastName, ci, fechaNac, telf, genero, pulgar_i, anular_i, medio_i, indice_i, menhique_i,
+               pulgar_d, anular_d, medio_d, indice_d, menhique_d, res_primer_analisis, formula_digital, categ, d10,
+               sqtl, recomendacion1="", recomendacion2="", **args):
+        self.name = name
+        self.lastName = lastName
+        self.ci = ci
+        self.fechaNac = fechaNac
+        self.telf = telf
+        self.genero = genero
+        # dedos
+        self.pulgar_i = Dedo.create(**pulgar_i)
+        self.anular_i = Dedo.create(**anular_i)
+        self.medio_i = Dedo.create(**medio_i)
+        self.indice_i = Dedo.create(**indice_i)
+        self.menhique_i = Dedo.create(**menhique_i)
+
+        self.pulgar_d = Dedo.create(**pulgar_d)
+        self.anular_d = Dedo.create(**anular_d)
+        self.medio_d = Dedo.create(**medio_d)
+        self.indice_d = Dedo.create(**indice_d)
+        self.menhique_d = Dedo.create(**menhique_d)
+        # res
+        self.res_primer_analisis = res_primer_analisis
+        self.formula_digital = formula_digital
+        self.categ = categ
+        self.d10 = d10
+        self.sqtl = sqtl
+        self.recomendacion1 = recomendacion1
+        self.recomendacion2 = recomendacion2
+
+
+    @staticmethod
+    def item_tabla(deporte, N, A, L, W, D10, SQTL):
+        return {
+            "deporte": deporte,
+            "N": N,
+            "A": A,
+            "L": L,
+            "W": W,
+            "D10": D10,
+            "SQTL": SQTL
+        }
+
+    @staticmethod
+    def search_in_table(d10, sqtl, tabla):
+        def get_distance(item):
+            return abs(sqtl - item['SQTL']) + abs(d10 - item['D10'])
+
+        opcion1 = None
+        opcion2 = None
+        param_1 = 10
+        for item in tabla:
+            distance = get_distance(item)
+            if (distance < param_1):
+                opcion2 = opcion1
+                opcion1 = item
+        return opcion1, opcion2
+
     def __init__(self):
+        self.tabla = [
+            User.item_tabla("Voleibol (2000)", 22, 1.00, 65.00, 34.00, 13.4, 125.6),
+            User.item_tabla("Voleibol (1997)", 28, 0.70, 53.20, 46.10, 14.5, 133.8),
+            User.item_tabla("Voleibol Femenino", 12, 12.00, 59.00, 29.00, 11.8, 98.6),
+            User.item_tabla("Basquetbol", 35, 2.00, 60.00, 38.00, 12.6, 126.7),
+            User.item_tabla("Basquetbol Masculino", 12, 5.00, 69.20, 25.80, 12.1, 12.1),
+            User.item_tabla("Karate (1997)", 7, 0.00, 45.70, 54.30, 15.4, 159.7),
+            User.item_tabla("Boxeo (1997)", 5, 0.00, 46.00, 54.00, 15.4, 143.4)
+        ]
         # self.age = None
         self.name = None
         self.lastName = None
@@ -112,6 +154,8 @@ class User:
         self.categ = {"arco": 0, "presilla": 0, "verticilo": 0}
         self.d10 = 0
         self.sqtl = 0
+        self.recomendacion1 = ""
+        self.recomendacion2 = ""
 
     def print(self):
         print(self.name, "pulgar es:", self.pulgar_i.category)
@@ -158,14 +202,14 @@ class User:
         A = self.categ["arco"]
         L = self.categ["presilla"]
         W = self.categ["verticilo"]
-        self.d10 = L + 2*W
+        self.d10 = L + 2 * W
 
     def calculate_sqtl(self):
         dedos = [self.pulgar_i, self.anular_i, self.medio_i, self.indice_i, self.menhique_i, self.pulgar_d,
                  self.anular_d, self.medio_d, self.indice_d, self.menhique_d]
         sqtl = 0
         for dedo in dedos:
-            sqtl+=dedo.distance
+            sqtl += dedo.distance
         self.sqtl = sqtl
 
 

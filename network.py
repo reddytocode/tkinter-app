@@ -2,7 +2,7 @@ import requests
 import base64
 import io
 from PIL import Image
-
+from CurrentUserPersistance import User
 ip = "http://104.131.122.100"
 
 
@@ -51,8 +51,27 @@ class Network:
         req = requests.post(path, json=data)
         print(req.status_code)
 
-# if __name__ == '__main__':
-#     from CurrentUserPersistance import User
-#     user = User()
-#     Network.saveUser(user)
-#
+    @staticmethod
+    def get_all():
+        ip = "http://127.0.0.1"
+        path = "{}:5002/users".format(ip)
+        req = requests.get(path)
+        res = []
+        if(req.status_code == 200):
+            import json
+            cache = json.loads(req.content)["users"]
+            for user in cache:
+                new_user = User()
+                new_user.create(**user)
+                res.append(new_user)
+            return res
+        else:
+            return None
+
+
+if __name__ == '__main__':
+    # from CurrentUserPersistance import User
+    # user = User()
+    # Network.saveUser(user)
+    Network.get_all()
+

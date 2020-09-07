@@ -36,7 +36,12 @@ class TakeHuella(tk.Frame):
         if self.current_user.pulgar_i.is_valid() and self.current_user.indice_i.is_valid() and self.current_user.anular_i.is_valid() and self.current_user.medio_i.is_valid() and self.current_user.menhique_i.is_valid() and self.current_user.pulgar_d.is_valid() and self.current_user.indice_d.is_valid() and self.current_user.anular_d.is_valid() and self.current_user.medio_d.is_valid() and self.current_user.menhique_d.is_valid():
             # macke analysis
             self.current_user.primer_analisis()
+            self.current_user.calculate_d10()
+            self.current_user.calculate_sqtl()
+            recomendacion1, recomendacion2 = User.search_in_table(self.current_user.d10, self.current_user.sqtl, self.current_user.tabla)
             # self.current_user.segundo_analisis()
+            self.current_user.recomendacion1 = recomendacion1
+            self.current_user.recomendacion2 = recomendacion2
             Network.saveUser(self.current_user)
             self.resultsWindow()
         else:
@@ -211,7 +216,10 @@ class TakeHuella(tk.Frame):
         tk.Label(newWindow, text="VERTICILOS:     {}".format(self.current_user.categ["verticilo"]), font=font).place(x=100, y=200)
         tk.Label(newWindow, text="D10:            {}".format(self.current_user.d10), font=font).place(x=100, y=250)
         tk.Label(newWindow, text="SQTL:           {}".format(self.current_user.sqtl), font=font).place(x=100, y=300)
-        tk.Button(newWindow, text="Ok", command=lambda :self.controller.show_frame("ResultFrame"))
+        tk.Label(newWindow, text="Recomendacion 1:{}".format(self.current_user.recomendacion1), font=font).place(x=100, y=350)
+        tk.Label(newWindow, text="Recomendacion 2:{}".format(self.current_user.recomendacion2), font=font).place(x=100, y=400)
+
+        tk.Button(newWindow, text="Ok", command=lambda :self.controller.show_frame("ResultFrame")).place(x=100, y=450)
 
     def openNewWindow(self, btn, field):
         newWindow = tk.Toplevel(self)
