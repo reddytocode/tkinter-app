@@ -2,7 +2,7 @@ import tkinter as tk  # python 3
 from tkinter import font  as tkfont  # python 3
 from huella_window import TakeHuella
 from main_window import MainWindow
-
+from ResultPage import ResultFrame
 
 class SampleApp(tk.Tk):
 
@@ -18,7 +18,7 @@ class SampleApp(tk.Tk):
 
         self.frames = {}
         # allowed screens
-        for F in (MainWindow, StartPage, PageTwo, TakeHuella):
+        for F in (MainWindow, StartPage, PageTwo, TakeHuella, ResultFrame):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame

@@ -41,3 +41,18 @@ class Network:
             return distance, encoded_image
         else:
             return None, None
+
+    @staticmethod
+    def saveUser(user):
+        ip = "http://127.0.0.1"
+        path = "{}:5002/user/save".format(ip)
+        data = user.to_json()
+        print(data)
+        req = requests.post(path, json=data)
+        print(req.status_code)
+
+# if __name__ == '__main__':
+#     from CurrentUserPersistance import User
+#     user = User()
+#     Network.saveUser(user)
+#

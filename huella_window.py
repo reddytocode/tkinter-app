@@ -5,86 +5,16 @@ from network import Network
 from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from tkinter import HORIZONTAL
+from CurrentUserPersistance import User,Dedo, set_user
 
-
-class Dedo:
-    def __init__(self):
-        self.category = None
-        self.distance = 0
-        self.huella_b64 = ""
-
-    def is_valid(self):
-        valid = self.category is not None
-        print("valid", self.category, "id", valid)
-        return valid
-
-class User:
-    def __init__(self):
-        self.age = None
-        self.name = None
-        self.lastName = None
-        self.ci = None
-        self.fechaNac = None
-        self.telf = None
-        self.genero = None
-        # dedos
-        self.pulgar_i = Dedo()
-        self.anular_i = Dedo()
-        self.medio_i = Dedo()
-        self.indice_i = Dedo()
-        self.menhique_i = Dedo()
-        self.res_primer_analisis = None
-        self.formula_digital = None
-
-    def print(self):
-        print(self.name, "pulgar es:", self.pulgar_i.category)
-
-    def primer_analisis(self):
-        dedos = [self.pulgar_i, self.anular_i, self.medio_i, self.indice_i, self.menhique_i]
-        res = {"arco": 0, "presilla": 0, "verticilo": 0}
-        """
-        arco => 1        (A)
-        presilla => 2o 3 (L)
-        verticillo => 4  (W)
-        """
-        for dedo in dedos:
-            res[dedo.category] += 1
-        A = res["arco"]
-        L = res["presilla"]
-        W = res["verticilo"]
-
-        if(A == 10):
-            self.res_primer_analisis = "FUERZA MAXIMA(no incluye potencia)"
-            self.formula_digital = "10A"
-        if(L >= 6 and W > 0 and A == 0):
-            self.res_primer_analisis = "Velocidad, Potencia con un componente de resistencia y coordinacion"
-            self.formula_digital = "LW"
-        elif(W >=5 and L > 0 and A == 0):
-            self.res_primer_analisis = "Resistencia y Coordinacion de Velocidad y Potencia"
-            self.formula_digital = "WL"
-        elif(A > 0 and L > 0 and W == 0):
-            self.res_primer_analisis = "FUERZA MAXIMA, VELOCIDAD Y POTENCIA"
-            self.formula_digital = "AL"
-        elif(A > 0 and L > 0 and W > 0):
-            # OJO PREGUNTAR
-            self.res_primer_analisis = "Depende de la mayor proporcion"
-            self.formula_digital = "ALW"
-        elif(L == 10):
-            self.res_primer_analisis = "POTENCIA Y VELOCIDAD"
-            self.formula_digital = "10L"
-        elif(W == 10):
-            self.res_primer_analisis = "RESISTENCIA Y COORDINACION"
-            self.formula_digital = "10W"
-
-
-
-
-
+genero_aux = "Hombre"
 
 
 class TakeHuella(tk.Frame):
 
     def save(self):
+        global genero_aux
+
         def check(field):
             if field is None or len(field) < 2:
                 tk.messagebox.showerror(title="Formulario incompleto", message="Formulario incompleto")
@@ -94,16 +24,21 @@ class TakeHuella(tk.Frame):
         self.current_user.ci = self.ci.get()
         self.current_user.fechaNac = self.fecha_nac.get()
         self.current_user.telf = self.telefono.get()
-        self.current_user.genero = self.genero.get()
+        self.current_user.genero = genero_aux
         check(self.current_user.name)
         check(self.current_user.lastName)
         check(self.current_user.ci)
         check(self.current_user.fechaNac)
         check(self.current_user.telf)
         check(self.current_user.genero)
-        if self.current_user.pulgar_i.is_valid() and self.current_user.indice_i.is_valid() and self.current_user.anular_i.is_valid() and self.current_user.medio_i.is_valid() and self.current_user.menhique_i.is_valid():
+
+        # self.controller.show_frame("ResultFrame")
+        if self.current_user.pulgar_i.is_valid() and self.current_user.indice_i.is_valid() and self.current_user.anular_i.is_valid() and self.current_user.medio_i.is_valid() and self.current_user.menhique_i.is_valid() and self.current_user.pulgar_d.is_valid() and self.current_user.indice_d.is_valid() and self.current_user.anular_d.is_valid() and self.current_user.medio_d.is_valid() and self.current_user.menhique_d.is_valid():
             # macke analysis
-            pass
+            self.current_user.primer_analisis()
+            # self.current_user.segundo_analisis()
+            Network.saveUser(self.current_user)
+            self.resultsWindow()
         else:
             tk.messagebox.showerror(title="Formulario incompleto", message="No se ingresaron todas las huellas")
 
@@ -159,7 +94,8 @@ class TakeHuella(tk.Frame):
         popupMenu.place(x=xEntry, y=y(6))
 
         def change_dropdown(*args):
-            print(tkvar.get())
+            global genero_aux
+            genero_aux = tkvar.get()
 
         tkvar.trace('w', change_dropdown)
         # self.genero.place(x=xEntry, y=y(6))
@@ -204,6 +140,23 @@ class TakeHuella(tk.Frame):
         self.menhique_i = tk.Button(self, width=3,
                                     command=lambda: self.openNewWindow(self.menhique_i, self.current_user.menhique_i))
         self.menhique_i.place(x=604, y=220)
+
+        """ derecha"""
+        self.pulgar_d: tk.Button = tk.Button(self, width=3, command=lambda: self.openNewWindow(self.pulgar_d,
+                                                                                               self.current_user.pulgar_d))
+        self.pulgar_d.place(x=875, y=323)
+        self.indice_d = tk.Button(self, width=3,
+                                  command=lambda: self.openNewWindow(self.indice_d, self.current_user.indice_d))
+        self.indice_d.place(x=810, y=170)
+        self.medio_d = tk.Button(self, width=3,
+                                 command=lambda: self.openNewWindow(self.medio_d, self.current_user.medio_d))
+        self.medio_d.place(x=760, y=160)
+        self.anular_d = tk.Button(self, width=3,
+                                  command=lambda: self.openNewWindow(self.anular_d, self.current_user.anular_d))
+        self.anular_d.place(x=710, y=184)
+        self.menhique_d = tk.Button(self, width=3,
+                                    command=lambda: self.openNewWindow(self.menhique_d, self.current_user.menhique_d))
+        self.menhique_d.place(x=660, y=230)
         # Being changed with is loading funtction
         self.progress = tk.Label(self, text="Cargando ... ...", font=font)
 
@@ -247,6 +200,18 @@ class TakeHuella(tk.Frame):
         # w = tk.Message(self, text="this is a relatively long message", width=50).pack()
 
         newWindow.destroy()
+    def resultsWindow(self):
+        newWindow = tk.Toplevel(self)
+        newWindow.title("Resultados")
+        newWindow.geometry("400x400")
+        font = ("Arial", "12", "bold italic")
+        tk.Label(newWindow, text="RESUMEN DE CARACTERISTICAS", font=font).place(x=100, y=50)
+        tk.Label(newWindow, text="ARCOS:          {}".format(self.current_user.categ["arco"]), font=font).place(x=100, y=100)
+        tk.Label(newWindow, text="PRESILLAS:      {}".format(self.current_user.categ["presilla"]), font=font).place(x=100, y=150)
+        tk.Label(newWindow, text="VERTICILOS:     {}".format(self.current_user.categ["verticilo"]), font=font).place(x=100, y=200)
+        tk.Label(newWindow, text="D10:            {}".format(self.current_user.d10), font=font).place(x=100, y=250)
+        tk.Label(newWindow, text="SQTL:           {}".format(self.current_user.sqtl), font=font).place(x=100, y=300)
+        tk.Button(newWindow, text="Ok", command=lambda :self.controller.show_frame("ResultFrame"))
 
     def openNewWindow(self, btn, field):
         newWindow = tk.Toplevel(self)
