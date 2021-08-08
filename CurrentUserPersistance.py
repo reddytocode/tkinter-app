@@ -54,7 +54,8 @@ class User:
             # res
             "res_primer_analisis": self.res_primer_analisis,
             "formula_digital": self.formula_digital,
-            "categ": self.categ,  # = {"arco": 0, "presilla": 0, "verticilo": 0}
+            # = {"arco": 0, "presilla": 0, "verticilo": 0}
+            "categ": self.categ,
             "d10": self.d10,
             "sqtl": self.sqtl,
             "recomendacion1": self.recomendacion1,
@@ -91,7 +92,6 @@ class User:
         self.recomendacion1 = recomendacion1
         self.recomendacion2 = recomendacion2
 
-
     @staticmethod
     def item_tabla(deporte, N, A, L, W, D10, SQTL):
         return {
@@ -121,12 +121,17 @@ class User:
 
     def __init__(self):
         self.tabla = [
-            User.item_tabla("Voleibol (2000)", 22, 1.00, 65.00, 34.00, 13.4, 125.6),
-            User.item_tabla("Voleibol (1997)", 28, 0.70, 53.20, 46.10, 14.5, 133.8),
-            User.item_tabla("Voleibol Femenino", 12, 12.00, 59.00, 29.00, 11.8, 98.6),
+            User.item_tabla("Voleibol (2000)", 22, 1.00,
+                            65.00, 34.00, 13.4, 125.6),
+            User.item_tabla("Voleibol (1997)", 28, 0.70,
+                            53.20, 46.10, 14.5, 133.8),
+            User.item_tabla("Voleibol Femenino", 12, 12.00,
+                            59.00, 29.00, 11.8, 98.6),
             User.item_tabla("Basquetbol", 35, 2.00, 60.00, 38.00, 12.6, 126.7),
-            User.item_tabla("Basquetbol Masculino", 12, 5.00, 69.20, 25.80, 12.1, 12.1),
-            User.item_tabla("Karate (1997)", 7, 0.00, 45.70, 54.30, 15.4, 159.7),
+            User.item_tabla("Basquetbol Masculino", 12,
+                            5.00, 69.20, 25.80, 12.1, 12.1),
+            User.item_tabla("Karate (1997)", 7, 0.00,
+                            45.70, 54.30, 15.4, 159.7),
             User.item_tabla("Boxeo (1997)", 5, 0.00, 46.00, 54.00, 15.4, 143.4)
         ]
         # self.age = None
@@ -209,7 +214,10 @@ class User:
                  self.anular_d, self.medio_d, self.indice_d, self.menhique_d]
         sqtl = 0
         for dedo in dedos:
-            sqtl += dedo.distance
+            try:
+                sqtl += dedo.distance
+            except Exception as e:
+                pass
         self.sqtl = sqtl
 
 
