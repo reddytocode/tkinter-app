@@ -1,5 +1,5 @@
 import tkinter as tk  # python 3
-from tkinter import font  as tkfont  # python 3
+from tkinter import font as tkfont  # python 3
 from PIL import Image, ImageTk
 from network import Network
 from tkinter import messagebox
@@ -31,17 +31,23 @@ class ResultFrame(tk.Frame):
         # user1 = User()
         # user1.categ = {"arco": 0, "presilla": 5, "verticilo": 10}
         # users = [user1, User()]
-        names = ["{} - {}".format(index, user.name) for index, user in enumerate(users)]
+        names = ["{} - {}".format(index, user.name)
+                 for index, user in enumerate(users)]
 
         # tk.Label(self, bg='#ebac00', width=1000, height=561).place(x=0, y=0)
         tkvar = tk.StringVar(self)
         choices = names
         tkvar.set('')
-        popupMenu = tk.OptionMenu(self, tkvar, *choices)
-
-        tk.Label(self, text="Elija el usuario a mostrar", bg='#ebac00', font=font).place(x=10, y=10)
-        popupMenu.place(x=10, y=45)
-        tk.Label(self, text="RESUMEN CARACTERISTICAS", **style_ORANGE).place(x=400, y=10)
+        if choices:
+            popupMenu = tk.OptionMenu(self, tkvar, *choices)
+            popupMenu.place(x=10, y=45)
+            tk.Label(self, text="Elija el usuario a mostrar",
+                     bg='#ebac00', font=font).place(x=10, y=10)
+        else:
+            tk.Label(self, text="Aún no hay usuarios para mostrar",
+                     bg='#ebac00', font=font).place(x=10, y=10)
+        tk.Label(self, text="RESUMEN CARACTERISTICAS",
+                 **style_ORANGE).place(x=400, y=10)
 
         self.current_user = None
 
@@ -75,24 +81,30 @@ class ResultFrame(tk.Frame):
             style = {"bg": '#ebac00', "font": font}
             style_ORANGE = {"bg": '#EB5E00', "font": font}
             tk.Label(self, width=43,
-                     text="Nombres y Apellidos:   {} {}".format(self.current_user.name, self.current_user.lastName),
+                     text="Nombres y Apellidos:   {} {}".format(
+                         self.current_user.name, self.current_user.lastName),
                      **style).place(x=100, y=150)
 
-            tk.Label(self, text="ESTUDIO DE DERMATOGLIFOS", **style).place(x=600, y=150)
+            tk.Label(self, text="ESTUDIO DE DERMATOGLIFOS",
+                     **style).place(x=600, y=150)
             tk.Label(self, text="ARCOS:          {}  ".format(self.current_user.categ["arco"]), **style).place(x=600,
-                                                                                                             y=200)
+                                                                                                               y=200)
             tk.Label(self, text="PRESILLAS:      {}  ".format(self.current_user.categ["presilla"]), **style).place(x=600,
-                                                                                                                 y=225)
+                                                                                                                   y=225)
             tk.Label(self, text="VERTICILOS:     {}  ".format(self.current_user.categ["verticilo"]), **style).place(x=600,
-                                                                                                                  y=250)
-            tk.Label(self, text="D10:            {}  ".format(self.current_user.d10), **style).place(x=750, y=200)
-            tk.Label(self, text="SQTL:           {}  ".format(self.current_user.sqtl), **style).place(x=750, y=225)
+                                                                                                                    y=250)
+            tk.Label(self, text="D10:            {}  ".format(
+                self.current_user.d10), **style).place(x=750, y=200)
+            tk.Label(self, text="SQTL:           {}  ".format(
+                self.current_user.sqtl), **style).place(x=750, y=225)
 
-            tk.Label(self, text="PREDOMINIO DE LAS CAPACIDADES DEPORTIVAS", width=43, **style_ORANGE).place(x=100, y=300)
+            tk.Label(self, text="PREDOMINIO DE LAS CAPACIDADES DEPORTIVAS",
+                     width=43, **style_ORANGE).place(x=100, y=300)
             tk.Label(self, text="{} - \"{}\"  ".format(self.current_user.res_primer_analisis,
-                                                     self.current_user.formula_digital), width=43, **style).place(x=100, y=325)
+                                                       self.current_user.formula_digital), width=43, **style).place(x=100, y=325)
 
-            tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:", width=43, **style_ORANGE).place(x=100, y=400)
+            tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:",
+                     width=43, **style_ORANGE).place(x=100, y=400)
             arco = self.current_user.categ["arco"]
             presilla = self.current_user.categ["presilla"]
             verticilo = self.current_user.categ["verticilo"]
@@ -132,17 +144,19 @@ class ResultFrame(tk.Frame):
                 c.create_rectangle(x0, y0, x1, y1, fill="red")
 
                 # Put the y value above the bar
-                c.create_text(x0, y0, anchor=tk.SW, text="{} - {}".format(name[x], str(y)))
-
+                c.create_text(x0, y0, anchor=tk.SW,
+                              text="{} - {}".format(name[x], str(y)))
 
             try:
                 tk.Label(self, text="Recomendacion 1:{}".format(self.current_user.recomendacion1["deporte"]), width=43,
                          **style).place(x=100, y=425)
             except Exception as e:
-                tk.Label(self, text="Recomendacion 1: No hay recomendacion", width=43, **style).place(x=100, y=425)
+                tk.Label(self, text="Recomendacion 1: No hay recomendacion",
+                         width=43, **style).place(x=100, y=425)
 
             try:
                 tk.Label(self, text="Recomendacion 2:{}".format(self.current_user.recomendacion2["deporte"]), width=43,
                          **style).place(x=100, y=450)
             except Exception as e:
-                tk.Label(self, text="Recomendacion 2: No hay recomendacion", width=43, **style).place(x=100, y=450)
+                tk.Label(self, text="Recomendacion 2: No hay recomendacion",
+                         width=43, **style).place(x=100, y=450)

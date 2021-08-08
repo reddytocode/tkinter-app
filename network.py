@@ -3,7 +3,7 @@ import base64
 import io
 from PIL import Image
 from CurrentUserPersistance import User
-ip = "http://104.131.122.100"
+ip = "http://206.189.198.9"
 
 
 class Network:
@@ -18,19 +18,20 @@ class Network:
     def get_category(path):
         category_url = "{}:5000/category".format(ip)
         path = Network.tratar_imagen(path)
-        req = requests.post(category_url, files={'file': open(path, mode='rb')})
+        req = requests.post(category_url, files={
+                            'file': open(path, mode='rb')})
         if req.status_code == 200:
             print("la huella es: ", req.content)
             return req.content
         else:
             return None
 
-
     @staticmethod
     def get_analisis_results(path):
         alalisis_url = "{}:5001/".format(ip)
         path = Network.tratar_imagen(path)
-        req = requests.post(alalisis_url, files={'file': open(path, mode='rb')})
+        req = requests.post(alalisis_url, files={
+                            'file': open(path, mode='rb')})
         if(req.status_code == 200):
             encoded_image = req.json()['encode'][2:-1]
             distance = req.json()['distance']
@@ -74,4 +75,3 @@ if __name__ == '__main__':
     # user = User()
     # Network.saveUser(user)
     Network.get_all()
-
