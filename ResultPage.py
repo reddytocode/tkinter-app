@@ -114,6 +114,7 @@ class ResultFrame(tk.Frame):
                      width=43, **style_ORANGE).place(x=100, y=300)
             tk.Label(self, text="{} - \"{}\"  ".format(self.current_user.res_primer_analisis,
                                                        self.current_user.formula_digital), width=43, **style).place(x=100, y=325)
+            
 
             tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:",
                      width=43, **style_ORANGE).place(x=100, y=400)
@@ -122,7 +123,27 @@ class ResultFrame(tk.Frame):
             verticilo = self.current_user.categ["verticilo"]
 
             data = [arco, presilla, verticilo]
+            may = max(data)
+                
+            max_data = data.index(may)
             name = ["Arco", "Presilla", "Verticilo"]
+            msg_pred = ["Fuerza", "Velocidad",
+                        "Coordinación motora"]
+            
+            predominancia = name[max_data]
+            msg_pred = msg_pred[max_data]
+            if data.count(may) > 1:
+                predominancia = ""
+                msg_pred = ""
+                for index, _ in enumerate(data):
+                    if data[index] == may:
+                        predominancia += " y " + name[index]
+                        msg_pred += " y " + msg_pred[index]
+            
+            tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR EL DEPORTISTA",
+                     width=43, **style_ORANGE).place(x=100, y=450)
+            tk.Label(self, text=msg_pred, width=43, **style).place(x=100, y=475)
+            
             X = [600, 625, 650]
 
             c_width = 225  # Define it's width
