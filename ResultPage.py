@@ -140,7 +140,7 @@ class ResultFrame(tk.Frame):
                         msg_pred.append(msg_pred[index])
                         msg_pred = " y ".join(msg_pred)
             
-            tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR EL DEPORTISTA",
+            tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR",
                      width=43, **style_ORANGE).place(x=100, y=325)
             tk.Label(self, text=msg_pred, width=43, **style).place(x=100, y=350)
             
