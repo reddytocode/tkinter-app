@@ -80,11 +80,23 @@ class ResultFrame(tk.Frame):
         if (self.current_user is not None):
             style = {"bg": '#ebac00', "font": font}
             style_ORANGE = {"bg": '#EB5E00', "font": font}
+             
             tk.Label(self, width=43,
                      text="Nombres y Apellidos:   {} {}".format(
                          self.current_user.name, self.current_user.lastName),
                      **style).place(x=100, y=150)
-
+            tk.Label(self, width=43,
+                     text="CI:   {}".format(
+                          self.current_user.ci), **style).place(x=100, y=160)
+            tk.Label(self, width=43,
+                     text="Fecha Nacimiento:   {}".format(
+                          self.current_user.fechaNac), **style).place(x=100, y=170)
+            tk.Label(self, width=43,
+                     text="Telf:   {}".format(
+                          self.current_user.telf), **style).place(x=100, y=180)
+            
+            
+            
             tk.Label(self, text="ESTUDIO DE DERMATOGLIFOS",
                      **style).place(x=600, y=150)
             tk.Label(self, text="ARCOS:          {}  ".format(self.current_user.categ["arco"]), **style).place(x=600,
