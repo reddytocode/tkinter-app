@@ -8,20 +8,17 @@ class Dedo:
         return {
             "category": self.category,
             "distance": self.distance,
-            "huella_b64": self.huella_b64
         }
 
     def __init__(self):
         self.category = None
         self.distance = 0
-        self.huella_b64 = ""
 
     @staticmethod
-    def create(category, distance, huella_b64):
+    def create(category, distance):
         dedo = Dedo()
         dedo.category = category
         dedo.distance = distance
-        dedo.huella_b64 = huella_b64
         return dedo
 
     def is_valid(self):

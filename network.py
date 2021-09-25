@@ -71,7 +71,4 @@ class Network:
 
 
 if __name__ == '__main__':
-    # from CurrentUserPersistance import User
-    # user = User()
-    # Network.saveUser(user)
     Network.get_all()
