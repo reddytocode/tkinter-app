@@ -163,18 +163,18 @@ class ResultFrame(tk.Frame):
                 
             max_data = data.index(may)
             name = ["Arco", "Presilla", "Verticilo"]
-            msg_pred = ["Fuerza", "Velocidad",
+            msg_pred_arr = ["Fuerza", "Velocidad",
                         "Coordinación motora"]
             
             predominancia = name[max_data]
-            msg_pred = msg_pred[max_data]
+            msg_pred = msg_pred_arr[max_data]
             if data.count(may) > 1:
                 predominancia = ""
-                msg_pred = []
+                arr = []
                 for index, _ in enumerate(data):
                     if data[index] == may:
-                        msg_pred.append(msg_pred[index])
-                        msg_pred = " y ".join(msg_pred)
+                        arr.append(msg_pred_arr[index])
+                        msg_pred = " y ".join(arr)
             
             tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR",
                      width=43, **style_ORANGE).place(x=100, y=325)
