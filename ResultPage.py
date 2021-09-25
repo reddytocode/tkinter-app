@@ -87,13 +87,13 @@ class ResultFrame(tk.Frame):
                      **style).place(x=100, y=150)
             tk.Label(self, width=43,
                      text="CI:   {}".format(
-                          self.current_user.ci), **style).place(x=100, y=160)
+                          self.current_user.ci), **style).place(x=100, y=175)
             tk.Label(self, width=43,
                      text="Fecha Nacimiento:   {}".format(
-                          self.current_user.fechaNac), **style).place(x=100, y=170)
+                          self.current_user.fechaNac), **style).place(x=100, y=200)
             tk.Label(self, width=43,
                      text="Telf:   {}".format(
-                          self.current_user.telf), **style).place(x=100, y=180)
+                          self.current_user.telf), **style).place(x=100, y=225)
             
             
             
