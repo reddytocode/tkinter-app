@@ -111,9 +111,9 @@ class ResultFrame(tk.Frame):
                 self.current_user.sqtl), **style).place(x=750, y=225)
 
             tk.Label(self, text="PREDOMINIO DE LAS CAPACIDADES DEPORTIVAS",
-                     width=43, **style_ORANGE).place(x=100, y=300)
+                     width=43, **style_ORANGE).place(x=100, y=275)
             tk.Label(self, text="{} - \"{}\"  ".format(self.current_user.res_primer_analisis,
-                                                       self.current_user.formula_digital), width=43, **style).place(x=100, y=325)
+                                                       self.current_user.formula_digital), width=43, **style).place(x=100, y=300)
             
 
             tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:",
@@ -134,15 +134,15 @@ class ResultFrame(tk.Frame):
             msg_pred = msg_pred[max_data]
             if data.count(may) > 1:
                 predominancia = ""
-                msg_pred = ""
+                msg_pred = []
                 for index, _ in enumerate(data):
                     if data[index] == may:
-                        predominancia += " y " + name[index]
-                        msg_pred += " y " + msg_pred[index]
+                        msg_pred.append(msg_pred[index])
+                        msg_pred = " y ".join(msg_pred)
             
             tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR EL DEPORTISTA",
-                     width=43, **style_ORANGE).place(x=100, y=450)
-            tk.Label(self, text=msg_pred, width=43, **style).place(x=100, y=475)
+                     width=43, **style_ORANGE).place(x=100, y=325)
+            tk.Label(self, text=msg_pred, width=43, **style).place(x=100, y=350)
             
             X = [600, 625, 650]
 
