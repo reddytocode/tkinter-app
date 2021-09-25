@@ -106,7 +106,7 @@ class ResultFrame(tk.Frame):
             text='Volver',
             font=('Arial Rounded MT Bold', 14),
             width=20,
-            command=lambda: controller.show_frame("MainWindow")
+            command=lambda: self.controller.show_frame("MainWindow")
         ).place(x=750, y=500)
         # if isinstance(self.current_user, User):
 
