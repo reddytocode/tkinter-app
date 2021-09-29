@@ -72,13 +72,16 @@ class TakeHuella(tk.Frame):
         tk.Button(self.top, text="ok", command=self.print_sel).pack()
     
     def __init__(self, parent, controller):
-        self.current_user = User()
+        print("init huella")
         tk.Frame.__init__(self, parent)
         self.controller = controller
         # window configuration
         self.controller.geometry("997x561")
         self.controller.resizable(False, False)
-        self.controller
+        self.refresh()
+    
+    def refresh(self):
+        self.current_user = User()
         font = ("Arial", "12", "bold italic")
         tk.Label(self, bg='#ebac00', width=1000, height=561).place(x=0, y=0)
         tk.Label(self, text="SISTEMA DE RECONOCIMENTO DE PATRONES DACTILARES", bg='#ebac00',
@@ -152,14 +155,26 @@ class TakeHuella(tk.Frame):
             self, text="Guardar", font=font, width=20, command=self.save
         ).place(x=30, y=500)
 
+        def volver(self):
+            self.refresh()
+            self.controller.show_frame("MainWindow")
         btn_volver = tk.Button(
             self,
             highlightbackground='#FFC638',
             text='Volver',
             font=('Arial Rounded MT Bold', 14),
             width=20,
-            command=lambda: controller.show_frame("MainWindow")
+            command=lambda: volver(self)
         ).place(x=750, y=500)
+
+        tk.Button(
+            self,
+            highlightbackground='#FFC638',
+            text='Refresh',
+            font=('Arial Rounded MT Bold', 14),
+            width=20,
+            command=lambda: self.refresh()
+        ).place(x=500, y=500)
 
         imageEmi = Image.open("image/manos.jpg")
         baseHeight = 315
