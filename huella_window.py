@@ -23,7 +23,7 @@ class TakeHuella(tk.Frame):
         self.current_user.name = self.name.get()
         self.current_user.lastName = self.last_name.get()
         self.current_user.ci = self.ci.get()
-        self.current_user.fechaNac = self.fecha_nac.get()
+        self.current_user.fechaNac = self.text.get()
         self.current_user.telf = self.telefono.get()
         self.current_user.genero = genero_aux
         check(self.current_user.name)
@@ -50,6 +50,27 @@ class TakeHuella(tk.Frame):
             tk.messagebox.showerror(
                 title="Formulario incompleto", message="No se ingresaron todas las huellas")
 
+    def print_sel(self):
+        date = self.cal.selection_get()
+        date = date.strftime("%Y-%m-%d")
+        self.text.set(date)
+        self.fecha_nac_label.place(
+            x=self.fecha_nac_label_x, y=self.fecha_nac_label_y)
+        print("date", date)
+        self.fecha_btn.place_forget()
+        self.top.destroy()
+
+
+    def fecha_nac(self):
+        from tkcalendar import Calendar, DateEntry
+        # tkinter frame
+        self.top = tk.Toplevel(self)
+        self.cal = Calendar(self.top,
+                    font="Arial 14", selectmode='day',
+                    year=2000, month=1, day=1)
+        self.cal.pack(fill="both", expand=True)
+        tk.Button(self.top, text="ok", command=self.print_sel).pack()
+    
     def __init__(self, parent, controller):
         self.current_user = User()
         tk.Frame.__init__(self, parent)
@@ -83,29 +104,42 @@ class TakeHuella(tk.Frame):
         tk.Label(self, text="Apellidos:", font=font,
                  bg=orange).place(x=x, y=y(2))
         tk.Label(self, text="CI:", font=font, bg=orange).place(x=x, y=y(3))
-        tk.Label(self, text="Fecha Nac:", font=font,
-                 bg=orange).place(x=x, y=y(4))
         tk.Label(self, text="Telefono:", font=font,
-                 bg=orange).place(x=x, y=y(5))
+                 bg=orange).place(x=x, y=y(4))
 
-        tk.Label(self, text="Genero:", font=font, bg=orange).place(x=x, y=y(6))
+        tk.Label(self, text="Genero:", font=font, bg=orange).place(x=x, y=y(5))
         xEntry = 150
+        self.xEntry = xEntry
+        
+        tk.Label(self, text="Fecha Nac:", font=font, bg=orange).place(x=x, y=y(6))
+        
         self.name = tk.Entry(self, font=font)
         self.name.place(x=xEntry, y=y(1))
         self.last_name = tk.Entry(self, font=font)
         self.last_name.place(x=xEntry, y=y(2))
         self.ci = tk.Entry(self, font=font)
         self.ci.place(x=xEntry, y=y(3))
-        self.fecha_nac = tk.Entry(self, font=font)
-        self.fecha_nac.place(x=xEntry, y=y(4))
         self.telefono = tk.Entry(self, font=font)
-        self.telefono.place(x=xEntry, y=y(5))
+        self.telefono.place(x=xEntry, y=y(4))
         self.genero = tk.Entry(self, font=font)
+        # self.fecha_nac = tk.Entry(self, font=font)
+        # self.fecha_nac.place(x=xEntry, y=y(5))
+        self.fecha_btn = tk.Button(self, text="Fecha", 
+                            command=self.fecha_nac,
+                            font=font,
+                            bg=orange)
+        self.fecha_btn.place(x=xEntry, y=y(6))
+        self.text = tk.StringVar()
+        self.text.set("")
+        self.fecha_nac_label = tk.Label(self, textvariable=self.text, font=font, bg=orange)
+        self.fecha_nac_label_x = xEntry
+        self.fecha_nac_label_y = y(6)
+        
         tkvar = tk.StringVar(self)
         choices = {'Hombre', 'Mujer'}
         tkvar.set('Hombre')
         popupMenu = tk.OptionMenu(self, tkvar, *choices)
-        popupMenu.place(x=xEntry, y=y(6))
+        popupMenu.place(x=xEntry, y=y(5))
 
         def change_dropdown(*args):
             global genero_aux
