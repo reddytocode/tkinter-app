@@ -67,7 +67,7 @@ class TakeHuella(tk.Frame):
         self.top = tk.Toplevel(self)
         self.cal = Calendar(self.top,
                     font="Arial 14", selectmode='day',
-                    year=2000, month=1, day=1)
+                            year=2000, month=1, day=1, locale="es")
         self.cal.pack(fill="both", expand=True)
         tk.Button(self.top, text="ok", command=self.print_sel).pack()
     
