@@ -1,11 +1,11 @@
 import tkinter as tk  # python 3
-from tkinter import font as tkfont  # python 3
-from PIL import Image, ImageTk
-from network import Network
 from tkinter import messagebox
-from tkinter.ttk import Progressbar
-from tkinter import HORIZONTAL
-from CurrentUserPersistance import User, Dedo, set_user
+
+from PIL import Image, ImageTk
+
+from CurrentUserPersistance import User, Dedo
+from network import Network
+from const import filename
 
 genero_aux = "Hombre"
 
@@ -62,7 +62,7 @@ class TakeHuella(tk.Frame):
 
 
     def fecha_nac(self):
-        from tkcalendar import Calendar, DateEntry
+        from tkcalendar import Calendar
         # tkinter frame
         self.top = tk.Toplevel(self)
         self.cal = Calendar(self.top,
@@ -244,7 +244,8 @@ class TakeHuella(tk.Frame):
         self.setIsLoading(True)
         from tkinter.filedialog import askopenfilename
         # show an "Open" dialog box and return the path to the selected file
-        filename = askopenfilename()
+        # filename = askopenfilename()
+        # filename = "~/Downloads/image-51.png"
         print(filename)
         print("making the request...")
 
