@@ -242,10 +242,6 @@ class TakeHuella(tk.Frame):
 
     def set_btn_valid(self, button, newWindow, field: Dedo):
         self.setIsLoading(True)
-        from tkinter.filedialog import askopenfilename
-        # show an "Open" dialog box and return the path to the selected file
-        # filename = askopenfilename()
-        # filename = "~/Downloads/image-51.png"
         print(filename)
         print("making the request...")
 
@@ -254,9 +250,9 @@ class TakeHuella(tk.Frame):
         field.category = category
         if (category != "arco"):
             distance, encoded = Network.get_analisis_results(filename)
-            if distance is None or encoded is None:
-                tk.messagebox.showerror("Registro Huella",
-                                        "No se encontro puntos caracteristicos en la huella, se la tomara de igual forma")
+            # if distance is None or encoded is None:
+            #     tk.messagebox.showerror("Registro Huella",
+            #                             "No se encontro puntos caracteristicos en la huella, se la tomara de igual forma")
             field.huella_b64 = encoded
             field.distance = distance
         self.setIsLoading(False)
