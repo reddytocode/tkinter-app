@@ -1,11 +1,8 @@
 import tkinter as tk  # python 3
-from tkinter import font as tkfont  # python 3
+
 from PIL import Image, ImageTk
+
 from network import Network
-from tkinter import messagebox
-from tkinter.ttk import Progressbar
-from tkinter import HORIZONTAL
-from CurrentUserPersistance import get_user, Dedo, User
 
 
 class ResultFrame(tk.Frame):
@@ -47,7 +44,9 @@ class ResultFrame(tk.Frame):
             print("chooosen", index)
 
         tkvar.trace('w', change_dropdown)
-        
+    def tkraise(self, aboveThis=None):
+        self.refresh()
+        return super(ResultFrame, self).tkraise()
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller

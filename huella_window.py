@@ -79,7 +79,11 @@ class TakeHuella(tk.Frame):
         self.controller.geometry("997x561")
         self.controller.resizable(False, False)
         self.refresh()
-    
+
+    def tkraise(self, aboveThis=None):
+        self.refresh()
+        return super(TakeHuella, self).tkraise()
+
     def refresh(self):
         self.current_user = User()
         font = ("Arial", "12", "bold italic")
