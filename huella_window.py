@@ -40,7 +40,7 @@ class TakeHuella(tk.Frame):
             self.current_user.calculate_d10()
             self.current_user.calculate_sqtl()
             recomendacion1, recomendacion2 = User.search_in_table(
-                self.current_user.d10, self.current_user.sqtl, self.current_user.tabla)
+                self.current_user.d10, self.current_user.tabla)
             # self.current_user.segundo_analisis()
             self.current_user.recomendacion1 = recomendacion1
             self.current_user.recomendacion2 = recomendacion2

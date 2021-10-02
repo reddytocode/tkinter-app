@@ -2,6 +2,7 @@ import tkinter as tk  # python 3
 
 from PIL import Image, ImageTk
 
+from CurrentUserPersistance import User
 from network import Network
 
 
@@ -215,15 +216,16 @@ class ResultFrame(tk.Frame):
                 c.create_text(x0, y0, anchor=tk.SW,
                               text="{} - {}".format(name[x], str(y)))
 
+            recomendacion1, recomendacion2 = User.search_in_table(self.current_user.d10, self.current_user.tabla)
             try:
-                tk.Label(self, text="Recomendacion 1:{}".format(self.current_user.recomendacion1["deporte"]), width=43,
+                tk.Label(self, text="Recomendacion 1:{}".format(recomendacion1["deporte"]), width=43,
                          **style).place(x=100, y=425)
             except Exception as e:
                 tk.Label(self, text="Recomendacion 1: No hay recomendacion",
                          width=43, **style).place(x=100, y=425)
 
             try:
-                tk.Label(self, text="Recomendacion 2:{}".format(self.current_user.recomendacion2["deporte"]), width=43,
+                tk.Label(self, text="Recomendacion 2:{}".format(recomendacion2["deporte"]), width=43,
                          **style).place(x=100, y=450)
             except Exception as e:
                 tk.Label(self, text="Recomendacion 2: No hay recomendacion",

@@ -102,34 +102,60 @@ class User:
         }
 
     @staticmethod
-    def search_in_table(d10, sqtl, tabla):
+    def search_in_table(d10, tabla):
         def get_distance(item):
-            return abs(sqtl - item['SQTL']) + abs(d10 - item['D10'])
+            return abs(d10 - item['D10'])
 
         opcion1 = None
         opcion2 = None
-        param_1 = 10
+        param_1 = 1
+        distancias = {}
+
         for item in tabla:
             distance = get_distance(item)
-            if (distance < param_1):
-                opcion2 = opcion1
-                opcion1 = item
+            if distance in distancias:
+                distancias[distance].append(item)
+            else:
+                distancias[distance] = [item]
+        d_aux = distancias.keys()
+        d_aux = sorted(d_aux)
+
+        if len(d_aux) > 2:
+            menor1 = d_aux[0]
+            if len(distancias[menor1]) > 2:
+                return distancias[menor1][0], distancias[menor1][1]
+            else:
+                menor2 = d_aux[1]
+                return distancias[menor1][0], distancias[menor2][0]
         return opcion1, opcion2
 
     def __init__(self):
         self.tabla = [
-            User.item_tabla("Voleibol (2000)", 22, 1.00,
+            User.item_tabla("Voleibol", 22, 1.00,
                             65.00, 34.00, 13.4, 125.6),
-            User.item_tabla("Voleibol (1997)", 28, 0.70,
+            User.item_tabla("Voleibol Playa", 28, 0.70,
                             53.20, 46.10, 14.5, 133.8),
-            User.item_tabla("Voleibol Femenino", 12, 12.00,
+            User.item_tabla("Voleibol fronton", 12, 12.00,
                             59.00, 29.00, 11.8, 98.6),
             User.item_tabla("Basquetbol", 35, 2.00, 60.00, 38.00, 12.6, 126.7),
-            User.item_tabla("Basquetbol Masculino", 12,
-                            5.00, 69.20, 25.80, 12.1, 12.1),
-            User.item_tabla("Karate (1997)", 7, 0.00,
+            User.item_tabla("Karate ", 7, 0.00,
                             45.70, 54.30, 15.4, 159.7),
-            User.item_tabla("Boxeo (1997)", 5, 0.00, 46.00, 54.00, 15.4, 143.4)
+            User.item_tabla("Boxeo ", 5, 0.00, 46.00, 54.00, 15.4, 143.4),
+            User.item_tabla("Gimnsia Olimpica", 28, 0.70,
+                            53.20, 46.10, 12.4, 97.8),
+            User.item_tabla("Triatlon", 12, 12.00,
+                            59.00, 29.00, 12.3, 118.6),
+            User.item_tabla("pilotos de Caza", 35, 2.00, 60.00, 38.00, 12.4, 99.2),
+            User.item_tabla("futsal", 12,
+                            5.00, 69.20, 25.80, 15.3, 142.1),
+            User.item_tabla("Atletismo", 7, 0.00,
+                            45.70, 54.30, 10.9, 93),
+            User.item_tabla("Esgrima", 5, 0.00, 46.00, 54.00, 11, 80.5),
+            User.item_tabla("futbol playa", 5, 0.00, 46.00, 54.00, 14.8, 131.5),
+            User.item_tabla("raquet", 7, 0.00,
+                            45.70, 54.30, 9, 93),
+            User.item_tabla("natacion velocidad", 5, 0.00, 46.00, 54.00, 12.3, 131.5),
+            User.item_tabla("natacion Fondo", 5, 0.00, 46.00, 54.00, 15.5, 131.5)
         ]
         # self.age = None
         self.name = None
