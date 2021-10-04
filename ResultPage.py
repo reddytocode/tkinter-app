@@ -195,6 +195,8 @@ class ResultFrame(tk.Frame):
             x_gap = 20  # The gap between left canvas edge and y axis
 
             # A quick for loop to calculate the rectangle
+            total = data[0] + data[1] + data[2]
+            
             for x, y in enumerate(data):
                 # coordinates of each bar
                 # Bottom left coordinate
@@ -211,9 +213,10 @@ class ResultFrame(tk.Frame):
 
                 # Draw the bar
                 c.create_rectangle(x0, y0, x1, y1, fill="red")
-
+                porcentaje = str(int(y * 100 / total)) + "%"
+                c.create_text(x0 + x_width / 2, y0-10, text=porcentaje, font=font)
                 # Put the y value above the bar
-                c.create_text(x0, y0, anchor=tk.SW,
+                c.create_text(x0, y0-20, anchor=tk.SW,
                               text="{} - {}".format(name[x], str(y)))
 
             recomendacion1, recomendacion2 = User.search_in_table(self.current_user.d10, self.current_user.tabla)
