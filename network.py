@@ -3,6 +3,7 @@ import base64
 import io
 from PIL import Image
 from CurrentUserPersistance import User
+import time as t
 ip = "http://206.189.198.9"
 
 
@@ -16,10 +17,14 @@ class Network:
 
     @staticmethod
     def get_category(path):
+        t0 = t.time()
         category_url = "{}:5000/category".format(ip)
         path = Network.tratar_imagen(path)
         req = requests.post(category_url, files={
                             'file': open(path, mode='rb')})
+        tf = t.time() - t0
+        print("Tiempo de respuesta (Clasificación de huella): ", tf)
+
         if req.status_code == 200:
             print("la huella es: ", req.content)
             return req.content
@@ -28,10 +33,14 @@ class Network:
 
     @staticmethod
     def get_analisis_results(path):
+        t0 = t.time()
         alalisis_url = "{}:5001/".format(ip)
         path = Network.tratar_imagen(path)
         req = requests.post(alalisis_url, files={
                             'file': open(path, mode='rb')})
+        tf = t.time() - t0
+        print("Tiempo de respuesta (Analisis): ", tf)
+
         if(req.status_code == 200):
             encoded_image = req.json()['encode'][2:-1]
             distance = req.json()['distance']
