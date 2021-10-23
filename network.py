@@ -44,10 +44,6 @@ class Network:
         if(req.status_code == 200):
             encoded_image = req.json()['encode'][2:-1]
             distance = req.json()['distance']
-            # msg = base64.b64decode(encoded_image)
-            # buf = io.BytesIO(msg)
-            # img = Image.open(buf)
-            # img.save("decoded.jpg")
             return distance, encoded_image
         else:
             return None, None
@@ -60,9 +56,19 @@ class Network:
         print(data)
         req = requests.post(path, json=data)
         print(req.status_code)
+    
+    @staticmethod
+    def remove_user(user):
+        print("removing ", user.ci)
+        ip = "http://127.0.0.1"
+        path = "{}:5002/user/{}".format(ip, user.ci)
+        print("path", path)
+
+        requests.delete(path)
 
     @staticmethod
     def get_all():
+        print("getting all")
         ip = "http://127.0.0.1"
         path = "{}:5002/users".format(ip)
         req = requests.get(path)

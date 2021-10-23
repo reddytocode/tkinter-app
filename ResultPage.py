@@ -15,7 +15,7 @@ class ResultFrame(tk.Frame):
         font = ("Arial", "12", "bold italic")
         style_ORANGE = {"bg": '#EB5E00', "font": font}
         self.users = Network.get_all()
-        print("self.users udated", self.users)
+        print("self.users udated", len(self.users))
         names = ["{} - {}".format(index, user.name)
                  for index, user in enumerate(self.users)]
 
@@ -45,6 +45,12 @@ class ResultFrame(tk.Frame):
             print("chooosen", index)
 
         tkvar.trace('w', change_dropdown)
+    
+    def remove(self):
+        print("removing")
+        Network.remove_user(self.current_user)
+        self.refresh()
+        
     def tkraise(self, aboveThis=None):
         self.refresh()
         return super(ResultFrame, self).tkraise()
@@ -236,4 +242,7 @@ class ResultFrame(tk.Frame):
             
             # add refresh button to refresh the page
             tk.Button(self, text="Refrescar", command=lambda: self.refresh()).place(x=600, y=100)
+
+            tk.Button(self, bg='red', text="Borrar",
+                      command=lambda: self.remove()).place(x=675, y=100)
             
