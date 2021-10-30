@@ -244,5 +244,5 @@ class ResultFrame(tk.Frame):
             tk.Button(self, text="Refrescar", command=lambda: self.refresh()).place(x=600, y=100)
 
             tk.Button(self, bg='red', text="Borrar",
-                      command=lambda: self.remove()).place(x=675, y=100)
+                      command=lambda: self.remove()).place(x=800, y=100)
             
