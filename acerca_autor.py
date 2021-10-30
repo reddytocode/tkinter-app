@@ -35,6 +35,7 @@ class AcercaDeAutor(tk.Frame):
         label_image.place(x=x, y=y)
         
     def __init__(self, parent, controller):
+
         tk.Frame.__init__(self, parent)
         self.controller = controller
         image = Image.open('image/fondo10.jpg')
@@ -46,7 +47,7 @@ class AcercaDeAutor(tk.Frame):
         self.place_image(path='image/emi400px.png', x=675, y=85)
         self.place_image(path='image/autor.jpeg', base_width=150, x=50, y=50)
         
-        tk.Label(self, text=text_about, font=self.controller.title_font,  anchor="e", justify=tk.LEFT).place(x=100, y=300)
+        tk.Label(self, text=text_about, font=("Arial", 15), anchor="e", justify=tk.LEFT).place(x=100, y=300)
         # controller font body
         # font = self.controller.body_font
         tk.Button(
