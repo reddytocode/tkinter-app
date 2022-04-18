@@ -167,13 +167,13 @@ class ResultFrame(tk.Frame):
                     **style, 
                     anchor="w", 
                     justify=tk.LEFT,
-                ).place(x=79, y=300)
+                ).place(x=60, y=300)
 
             else:
                 tk.Label(
                     self, 
                     text=final_predominio, 
-                    width=55, 
+                    width=43, 
                     **style, 
                 ).place(x=100, y=300)
 
