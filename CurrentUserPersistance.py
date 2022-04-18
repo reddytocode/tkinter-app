@@ -206,10 +206,12 @@ class User:
             self.res_primer_analisis = "FUERZA MAXIMA(no incluye potencia)"
             self.formula_digital = "10A"
         if (L >= 6 and W > 0 and A == 0):
-            self.res_primer_analisis = "Influye en Velocidad, Potencia, Resistencia y Coordinación"
+            # self.res_primer_analisis = "Velocidad, Potencia con un componente de resistencia y coordinacion"
+            self.res_primer_analisis = "Influye en 4 cualidades menos Fuerza"
             self.formula_digital = "LW"
         elif (W >= 5 and L > 0 and A == 0):
-            self.res_primer_analisis = "Resistencia y Coordinacion de Velocidad y Potencia"
+            # self.res_primer_analisis = "Resistencia y Coordinacion de Velocidad y Potencia"
+            self.res_primer_analisis = "Influye en 4 cualidades menos Fuerza"
             self.formula_digital = "WL"
         elif (A > 0 and L > 0 and W == 0):
             self.res_primer_analisis = "FUERZA MAXIMA, VELOCIDAD Y POTENCIA"
