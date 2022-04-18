@@ -1,6 +1,4 @@
 import tkinter as tk
-from typing import final  # python 3
-
 from PIL import Image, ImageTk
 
 from CurrentUserPersistance import User
