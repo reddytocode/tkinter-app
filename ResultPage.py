@@ -134,9 +134,10 @@ class ResultFrame(tk.Frame):
             tk.Label(self, width=43,
                      text="Fecha Nacimiento:   {}".format(
                           self.current_user.fechaNac), **style).place(x=100, y=200)
+            final_telf = self.current_user.telf if self.current_user.telf else "--------------"
             tk.Label(self, width=43,
                      text="Telf:   {}".format(
-                          self.current_user.telf), **style).place(x=100, y=225)
+                          final_telf), **style).place(x=100, y=225)
             
             
             
