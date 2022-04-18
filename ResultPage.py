@@ -157,7 +157,7 @@ class ResultFrame(tk.Frame):
             tk.Label(self, text="PREDOMINIO DE LAS CAPACIDADES DEPORTIVAS",
                      width=43, **style_ORANGE).place(x=100, y=275)
             
-            final_predominio = "{} - \"{}\"  ".format(self.current_user.predominio, self.current_user.predominio_desc)
+            final_predominio = "{} - \"{}\"  ".format(self.current_user.res_primer_analisis, self.current_user.formula_digital)
             final_predominio = final_predominio.upper()
             tk.Label(self, text=final_predominio, width=43+10, **style).place(x=90, y=300)
 
