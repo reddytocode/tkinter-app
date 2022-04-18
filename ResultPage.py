@@ -159,7 +159,8 @@ class ResultFrame(tk.Frame):
             
             final_predominio = "{} - \"{}\"  ".format(self.current_user.res_primer_analisis, self.current_user.formula_digital)
             final_predominio = final_predominio.upper()
-            tk.Label(self, text=final_predominio, width=43, **style).place(x=90, y=300)
+            offset = 20
+            tk.Label(self, text=final_predominio, width=43+(2*offset), **style).place(x=100-offset, y=300)
 
             tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:",
                      width=43, **style_ORANGE).place(x=100, y=400)
