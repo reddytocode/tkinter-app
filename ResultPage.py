@@ -122,10 +122,11 @@ class ResultFrame(tk.Frame):
         if (self.current_user is not None):
             style = {"bg": '#ebac00', "font": font}
             style_ORANGE = {"bg": '#EB5E00', "font": font}
-             
+            
+            full_name = f"{self.current_user.name} {self.current_user.lastName}".upper()
             tk.Label(self, width=43,
-                     text="Nombres y Apellidos:   {} {}".format(
-                         self.current_user.name, self.current_user.lastName),
+                     text="Nombres y Apellidos:   {}".format(
+                        full_name),
                      **style).place(x=100, y=150)
             tk.Label(self, width=43,
                      text="CI:   {}".format(
