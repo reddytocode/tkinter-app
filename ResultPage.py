@@ -127,7 +127,7 @@ class ResultFrame(tk.Frame):
                      text="Nombres y Apellidos:   {}".format(
                         full_name),
                      **style).place(x=100, y=150)
-            final_ci = self.current_user.ci if self.current_user_ci else "-------"
+            final_ci = self.current_user.ci if self.current_user.ci else "-------"
             tk.Label(self, width=43,
                      text="CI:   {}".format(
                           final_ci), **style).place(x=100, y=175)
