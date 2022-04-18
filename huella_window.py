@@ -286,10 +286,11 @@ class TakeHuella(tk.Frame):
             self.current_user.d10), font=font).place(x=100, y=250)
         tk.Label(newWindow, text="SQTL:           {}".format(
             self.current_user.sqtl), font=font).place(x=100, y=300)
-        tk.Label(newWindow, text="Recomendacion 1:{}".format(
-            self.current_user.recomendacion1), font=font).place(x=100, y=350)
-        tk.Label(newWindow, text="Recomendacion 2:{}".format(
-            self.current_user.recomendacion2), font=font).place(x=100, y=400)
+        # tk.Label(newWindow, text="Recomendacion 1:{}".format(
+        #     self.current_user.recomendacion1), font=font).place(x=100, y=350)
+        tk.Label(newWindow, text="Análisis terminado", font=font).place(x=100, y=350)
+        # tk.Label(newWindow, text="Recomendacion 2:{}".format(
+            # self.current_user.recomendacion2), font=font).place(x=100, y=400)
 
         tk.Button(newWindow, text="Ok", command=lambda: self.controller.show_frame(
             "ResultFrame")).place(x=100, y=450)
