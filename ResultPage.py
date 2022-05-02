@@ -168,6 +168,7 @@ class ResultFrame(tk.Frame):
 
             tk.Label(self, text="SE RECOMIENDA QUE TIENE APTITUDES PARA:",
                      width=43, **style_ORANGE).place(x=100, y=400)
+            
             arco = self.current_user.categ["arco"]
             presilla = self.current_user.categ["presilla"]
             verticilo = self.current_user.categ["verticilo"]
@@ -180,10 +181,8 @@ class ResultFrame(tk.Frame):
             msg_pred_arr = ["Fuerza", "Velocidad",
                         "Coordinación motora"]
             
-            predominancia = name[max_data]
             msg_pred = msg_pred_arr[max_data]
             if data.count(may) > 1:
-                predominancia = ""
                 arr = []
                 for index, _ in enumerate(data):
                     if data[index] == may:
