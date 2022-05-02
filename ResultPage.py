@@ -14,7 +14,7 @@ class ResultFrame(tk.Frame):
         font = ("Arial", "12", "bold italic")
         style_ORANGE = {"bg": '#EB5E00', "font": font}
         self.users = Network.get_all()
-        print("self.users udated", len(self.users))
+        print("usuarios cargados en memoria: ", len(self.users))
         names = ["{} - {}".format(index, user.name)
                  for index, user in enumerate(self.users)]
 
