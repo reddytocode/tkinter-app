@@ -1,4 +1,5 @@
 from asyncio import FastChildWatcher
+from datetime import datetime
 import tkinter as tk  # python 3
 from tkinter import messagebox
 
@@ -96,14 +97,13 @@ class TakeHuella(tk.Frame):
         self.fecha_btn.place_forget()
         self.top.destroy()
 
-
     def fecha_nac(self):
         from tkcalendar import Calendar
         # tkinter frame
         self.top = tk.Toplevel(self)
         self.cal = Calendar(self.top,
                     font="Arial 14", selectmode='day',
-                            year=2000, month=1, day=1, locale="es")
+                            year=2000, month=1, day=1, locale="es", maxdate=datetime.now())
         self.cal.pack(fill="both", expand=True)
         tk.Button(self.top, text="ok", command=self.print_sel).pack()
     
