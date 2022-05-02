@@ -53,9 +53,7 @@ class TakeHuella(tk.Frame):
         global genero_aux
 
         def check(field):
-            if field is None or len(field) < 2:
-                tk.messagebox.showerror(
-                    title="Formulario incompleto", message="Formulario incompleto")
+            return field is None or len(field) < 2
 
         self.current_user.name = self.name.get()
         self.current_user.lastName = self.last_name.get()
@@ -63,12 +61,19 @@ class TakeHuella(tk.Frame):
         self.current_user.fechaNac = self.text.get()
         self.current_user.telf = self.telefono.get()
         self.current_user.genero = genero_aux
-        check(self.current_user.name)
-        check(self.current_user.lastName)
-        check(self.current_user.ci)
-        check(self.current_user.fechaNac)
-        check(self.current_user.telf)
-        check(self.current_user.genero)
+        fields_checker = [
+            check(self.current_user.name),
+            check(self.current_user.lastName),
+            check(self.current_user.ci),
+            check(self.current_user.fechaNac),
+            check(self.current_user.telf),
+            check(self.current_user.genero)
+        ]
+        if any(fields_checker):
+            tk.messagebox.showerror(
+                title="Formulario incompleto",
+                message="Formulario incompleto"
+                )
 
         # self.controller.show_frame("ResultFrame")
         if self.current_user.pulgar_i.is_valid() and self.current_user.indice_i.is_valid() and self.current_user.anular_i.is_valid() and self.current_user.medio_i.is_valid() and self.current_user.menhique_i.is_valid() and self.current_user.pulgar_d.is_valid() and self.current_user.indice_d.is_valid() and self.current_user.anular_d.is_valid() and self.current_user.medio_d.is_valid() and self.current_user.menhique_d.is_valid():
@@ -292,12 +297,12 @@ class TakeHuella(tk.Frame):
         category = str(category)[2:-1]
         field.category = category
         if (category != "arco"):
-            distance, encoded = Network.get_analisis_results(filename)
+            # distance, encoded = Network.get_analisis_results(filename)
             # if distance is None or encoded is None:
             #     tk.messagebox.showerror("Registro Huella",
             #                             "No se encontro puntos caracteristicos en la huella, se la tomara de igual forma")
-            field.huella_b64 = encoded
-            field.distance = distance
+            field.huella_b64 = ""
+            field.distance = ""
         self.setIsLoading(False)
         if category is not None:
             tk.messagebox.showinfo(
