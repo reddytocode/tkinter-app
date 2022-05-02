@@ -1,7 +1,5 @@
-from asyncio import FastChildWatcher
 from datetime import datetime
 import tkinter as tk  # python 3
-from tkinter import messagebox
 
 from PIL import Image, ImageTk
 
