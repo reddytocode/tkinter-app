@@ -93,7 +93,6 @@ class TakeHuella(tk.Frame):
         self.text.set(date)
         self.fecha_nac_label.place(
             x=self.fecha_nac_label_x, y=self.fecha_nac_label_y)
-        print("date", date)
         self.fecha_btn.place_forget()
         self.top.destroy()
 
