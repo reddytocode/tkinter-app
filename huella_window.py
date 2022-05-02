@@ -72,6 +72,7 @@ class TakeHuella(tk.Frame):
                 title="Formulario incompleto",
                 message="Formulario incompleto"
                 )
+            return
 
         # self.controller.show_frame("ResultFrame")
         if self.current_user.pulgar_i.is_valid() and self.current_user.indice_i.is_valid() and self.current_user.anular_i.is_valid() and self.current_user.medio_i.is_valid() and self.current_user.menhique_i.is_valid() and self.current_user.pulgar_d.is_valid() and self.current_user.indice_d.is_valid() and self.current_user.anular_d.is_valid() and self.current_user.medio_d.is_valid() and self.current_user.menhique_d.is_valid():
