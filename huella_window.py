@@ -1,3 +1,4 @@
+from asyncio import FastChildWatcher
 import tkinter as tk  # python 3
 from tkinter import messagebox
 
@@ -8,6 +9,41 @@ from network import Network
 from const import filename
 
 genero_aux = "Hombre"
+
+
+def validate_name(name):
+    name_split = name.split(" ")
+    try:
+        if name[-1] == " ":
+            if name[-2] == " ":
+                return False
+            return True
+    except IndexError:
+        return True
+
+    for name_part in name_split:
+        if not name_part.isalpha():
+            return False
+    return True
+
+
+def validate_phone_number(telf):
+    if len(telf) == 0:
+        return True
+    if len(telf) > 8:
+        return False
+    if len(telf) > 0:
+        if " " in telf:
+            return False
+    try:
+        if len(telf) == 1:
+            return int(telf[0]) in (6, 7, 2)
+        if telf.isdigit():
+            return True
+        int(telf)
+        return True
+    except ValueError:
+        return False
 
 
 class TakeHuella(tk.Frame):
@@ -106,7 +142,7 @@ class TakeHuella(tk.Frame):
                       width=325).place(x=30, y=140)
         tk.Label(self, text="Datos del Atleta",
                  font=font, bg=orange).place(x=x, y=piv)
-        tk.Label(self, text="Nombres:", font=font,
+        tk.Label(self, text="Nombre(s):", font=font,
                  bg=orange).place(x=x, y=y(1))
         tk.Label(self, text="Apellidos:", font=font,
                  bg=orange).place(x=x, y=y(2))
@@ -120,13 +156,21 @@ class TakeHuella(tk.Frame):
         
         tk.Label(self, text="Fecha Nac:", font=font, bg=orange).place(x=x, y=y(6))
         
+        reg = self.register(validate_name) 
         self.name = tk.Entry(self, font=font)
+        self.name.config(validate="key", validatecommand=(reg, "%P"))
+
         self.name.place(x=xEntry, y=y(1))
         self.last_name = tk.Entry(self, font=font)
+        self.last_name.config(validate="key", validatecommand=(reg, "%P"))
+
         self.last_name.place(x=xEntry, y=y(2))
         self.ci = tk.Entry(self, font=font)
         self.ci.place(x=xEntry, y=y(3))
+        reg_telf = self.register(validate_phone_number)
         self.telefono = tk.Entry(self, font=font)
+        self.telefono.config(validate="key", validatecommand=(reg_telf, "%P"))
+
         self.telefono.place(x=xEntry, y=y(4))
         self.genero = tk.Entry(self, font=font)
         # self.fecha_nac = tk.Entry(self, font=font)
