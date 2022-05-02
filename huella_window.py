@@ -302,7 +302,7 @@ class TakeHuella(tk.Frame):
             #     tk.messagebox.showerror("Registro Huella",
             #                             "No se encontro puntos caracteristicos en la huella, se la tomara de igual forma")
             field.huella_b64 = ""
-            field.distance = ""
+            field.distance = 0
         self.setIsLoading(False)
         if category is not None:
             tk.messagebox.showinfo(
