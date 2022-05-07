@@ -127,14 +127,30 @@ class TakeHuella(tk.Frame):
         self.current_user = User()
         font = ("Arial", "12", "bold italic")
         tk.Label(self, bg='#ebac00', width=1000, height=561).place(x=0, y=0)
-        tk.Label(self, text="SISTEMA DE RECONOCIMENTO DE PATRONES DACTILARES", bg='#ebac00',
-                 font=font).place(x=233, y=30)
-        tk.Label(self, text="BASADO EN LA TEORIA DE DERMATOGLIFIOS, PARA DETERMINAR", bg='#ebac00',
-                 font=font).place(x=196, y=60)
-        tk.Label(self, text="LOS TALENTOS Y CAPACIDADES GENÉTICAS DE LOS DEPORTISTAS", bg='#ebac00',
-                 font=font).place(x=189, y=90)
+        tk.Label(
+            self,
+            text="SISTEMA DE RECONOCIMENTO DE PATRONES DACTILARES",
+            bg='#ebac00',
+            anchor="center",
+            font=font
+        ).place(x=333, y=30)
+        
+        tk.Label(
+            self,
+            text="BASADO EN LA TEORIA DE DERMATOGLIFIOS, PARA DETERMINAR",
+            bg='#ebac00',
+            anchor="center",
+            font=font
+        ).place(x=296, y=60)
 
-        # tk.LabelFrame(self, bg='black', height=350, width=997).place(relx=0.5, rely=0.5, anchor=tk.CENTER, y=35)
+        tk.Label(
+            self,
+            text="LOS TALENTOS Y CAPACIDADES GENÉTICAS DE LOS DEPORTISTAS",
+            bg='#ebac00',
+            anchor="center",
+            font=font
+        ).place(x=289, y=90)
+
 
         orange = "#EB5E00"
         sep = 40
@@ -176,8 +192,7 @@ class TakeHuella(tk.Frame):
 
         self.telefono.place(x=xEntry, y=y(4))
         self.genero = tk.Entry(self, font=font)
-        # self.fecha_nac = tk.Entry(self, font=font)
-        # self.fecha_nac.place(x=xEntry, y=y(5))
+        
         self.fecha_btn = tk.Button(self, text="Fecha", 
                             command=self.fecha_nac,
                             font=font,
@@ -202,21 +217,26 @@ class TakeHuella(tk.Frame):
         tkvar.trace('w', change_dropdown)
         # self.genero.place(x=xEntry, y=y(6))
 
-        btn_save = tk.Button(
-            self, text="Guardar", font=font, width=20, command=self.save
-        ).place(x=30, y=500)
+        tk.Button(
+            self,
+            text="Guardar",
+            font=font,
+            width=20,
+            command=self.save
+        ).place(x=30, y=550)
 
         def volver(self):
             self.refresh()
             self.controller.show_frame("MainWindow")
-        btn_volver = tk.Button(
+        
+        tk.Button(
             self,
             highlightbackground='#FFC638',
             text='Volver',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: volver(self)
-        ).place(x=750, y=500)
+        ).place(x=850, y=550)
 
         tk.Button(
             self,
@@ -225,7 +245,7 @@ class TakeHuella(tk.Frame):
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.refresh()
-        ).place(x=500, y=500)
+        ).place(x=600, y=550)
 
         imageEmi = Image.open("image/manos.jpg")
         baseHeight = 315
@@ -333,11 +353,7 @@ class TakeHuella(tk.Frame):
             self.current_user.d10), font=font).place(x=100, y=250)
         tk.Label(newWindow, text="SQTL:           {}".format(
             self.current_user.sqtl), font=font).place(x=100, y=300)
-        # tk.Label(newWindow, text="Recomendacion 1:{}".format(
-        #     self.current_user.recomendacion1), font=font).place(x=100, y=350)
         tk.Label(newWindow, text="Análisis terminado", font=font).place(x=100, y=350)
-        # tk.Label(newWindow, text="Recomendacion 2:{}".format(
-            # self.current_user.recomendacion2), font=font).place(x=100, y=400)
 
         tk.Button(newWindow, text="Ok", command=lambda: self.controller.show_frame(
             "ResultFrame")).place(x=100, y=450)
