@@ -32,10 +32,10 @@ class MainWindow(tk.Frame):
 
         labelEmi = tk.Label(self, image=photoEmi)
         labelEmi.image = photoEmi
-        labelEmi.place(x=675, y=85)
+        labelEmi.place(x=775, y=85)
 
         # CARTA DERMATOGLIFIA
-        btn_resultados = tk.Button(
+        tk.Button(
             self,
             highlightbackground='#FBFF00',
             text='Carta Dermatoglifica',
@@ -43,41 +43,31 @@ class MainWindow(tk.Frame):
             width=20,
             command=lambda: self.controller.show_frame("ResultFrame")).place(x=30, y=30)
 
-        # CONFIGURACION
-        # btn_configuracion = tk.Button(
-        #     self,
-        #     highlightbackground='#04FEEF',
-        #     text='RESULTADOS',
-        #     font=('Arial Rounded MT Bold', 14),
-        #     width=20,
-        #     command = lambda: self.controller.show_frame("ResultFrame")
-        # ).place(x=500, y=30)
-
         # CAPTAR HUELLA
-        btn_huella = tk.Button(
+        tk.Button(
             self,
             highlightbackground='#08FE04',
             text='CAPTAR HUELLA',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.controller.show_frame("TakeHuella")
-        ).place(x=750, y=30)
+        ).place(x=850, y=30)
 
         # Acerca del autor
-        btn_author = tk.Button(
+        tk.Button(
             self,
             highlightbackground='#FFC638',
             text='ACERCA DEL AUTOR',
             font=('Arial Rounded MT Bold', 14),
             width=20,
-            command=lambda: self.controller.show_frame("AcercaDeAutor")).place(x=750, y=300)
+            command=lambda: self.controller.show_frame("AcercaDeAutor")).place(x=850, y=300)
 
         # Volver
-        btn_volver = tk.Button(
+        tk.Button(
             self,
             highlightbackground='#FFC638',
             text='SALIR',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=self.controller.destroy
-        ).place(x=750, y=500)
+        ).place(x=850, y=550)

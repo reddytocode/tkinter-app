@@ -53,18 +53,23 @@ class ResultFrame(tk.Frame):
     def tkraise(self, aboveThis=None):
         self.refresh()
         return super(ResultFrame, self).tkraise()
+    
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        # original size 997 x 560
+        self.base_width = 1100
+        self.controller.geometry("1100x640")
         self.set_init()
         
     def set_init(self):
         font = ("Arial", "12", "bold italic")
         imageEmi = Image.open("image/fondopista.jpg")
-        basewidth = 997
+        basewidth = self.base_width + 100
         style_ORANGE = {"bg": '#EB5E00', "font": font}
         wpercent = (basewidth / float(imageEmi.size[0]))
         hsize = int((float(imageEmi.size[1]) * float(wpercent)))
+        print("hsize: ", hsize)
         imageEmi = imageEmi.resize((basewidth, hsize), Image.ANTIALIAS)
         imageEmi_copy = imageEmi.copy()
         photoEmi = ImageTk.PhotoImage(imageEmi_copy)
@@ -104,16 +109,14 @@ class ResultFrame(tk.Frame):
 
         tkvar.trace('w', change_dropdown)
 
-
-        btn_volver = tk.Button(
+        tk.Button(
             self,
             highlightbackground='#FFC638',
             text='Volver',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.controller.show_frame("MainWindow")
-        ).place(x=750, y=500)
-        # if isinstance(self.current_user, User):
+        ).place(x=850, y=580)
 
     def setUserTable(self):
         font = ("Arial", "12", "bold italic")
@@ -234,7 +237,9 @@ class ResultFrame(tk.Frame):
 
             recomendacion1, recomendacion2 = User.search_in_table(self.current_user.d10, self.current_user.tabla)
             try:
-                tk.Label(self, text="Recomendacion 1:{}".format(recomendacion1["deporte"]), width=43,
+                deporte = recomendacion1["deporte"].title()
+                # string capital letters
+                tk.Label(self, text="Recomendacion 1:{}".format(deporte), width=43,
                          **style).place(x=100, y=425)
             except Exception as e:
                 tk.Label(self, text="Recomendacion 1: No hay recomendacion",

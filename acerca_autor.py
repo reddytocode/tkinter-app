@@ -11,7 +11,7 @@ Mi nombre es Luis Enrique Balboa Flores y soy estudiante de la Escuela Militar d
 en el ultimo año de Ingenieria de sisitemas,
 este Proyecto fue realizado en python con tegnologias ApiRest en un servidor en la nube.
 El Proyecto se realizado en el Club Litoral dandole el agradecimineto al Pro. Diego Villena
-quien hacepto gustoso la realizacion del proyecto.
+quien acepto gustoso la realizacion del proyecto.
 """
 
 class AcercaDeAutor(tk.Frame):
@@ -44,12 +44,17 @@ class AcercaDeAutor(tk.Frame):
         self.label = tk.Label(self, image=photo)
         self.label.bind('<Configure>', self.resize_image)
         self.label.pack(fill=tk.BOTH, expand=tk.YES)
-        self.place_image(path='image/emi400px.png', x=675, y=85)
+        self.place_image(path='image/emi400px.png', x=775, y=85)
         self.place_image(path='image/autor.jpeg', base_width=150, x=50, y=50)
         
-        tk.Label(self, text=text_about, font=("Arial", 15), anchor="e", justify=tk.LEFT).place(x=100, y=300)
-        # controller font body
-        # font = self.controller.body_font
+        tk.Label(
+            self,
+            text=text_about,
+            font=("Arial", 15),
+            anchor="e",
+            justify=tk.LEFT
+        ).place(x=200, y=325)
+
         tk.Button(
             self,
             highlightbackground='#FFC638',
@@ -57,4 +62,4 @@ class AcercaDeAutor(tk.Frame):
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: controller.show_frame("MainWindow")
-        ).place(x=750, y=500)
+        ).place(x=850, y=550)
