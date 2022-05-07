@@ -1,8 +1,52 @@
+from cgitb import small
 import tkinter as tk
 from PIL import Image, ImageTk
 
 from CurrentUserPersistance import User
 from network import Network
+
+lw_msg = """
+    Estos deportitas se centran naturalmente en
+    generar la mayor poyencia con el menor peso
+    corporal, manteniedo una alimentacion ideal
+    podran practicar Boxeo, lucha, carreras de caballo,
+    gimnasia y el salto de trampolin.
+    """
+
+wl_msg = """
+    Los deportistas con resistencia y
+    coordinación motora pasan largas horas
+    en entrenamientos y competiciones los deportes
+    ideales para ellos son las carreras de
+    distancia, triatletas, nadadores de fondo y
+    ciclistas.
+    """
+arco_msg = """
+    Los deportistas que tiene huellas arco
+    requieren un esfuerzo máximo y en los deportes
+    que pueden practicar son: salto de altura,
+    carrera 100m, levantamiento de pesas,
+    lanzamientos, ciclismo en pista, baloncesto,
+    voleibol y futbol.
+    """
+presilla_msg = """
+    La velocidad representa la capacidad
+    de realizar acciones corporales
+    en un mínimo tiempo y con eficiencia. 
+    Los reportes que puede practicar son:
+    futbol, baloncesto, artes marciales, 
+    tenis, gimnasia, boxeo, futbol americano y
+    la mayoría de pruebas de atletismo.
+    """
+verticilo_msg = """
+    La coordinación en la combinación
+    física y motora que permite que el
+    individuo pueda moverse o realizar algo,
+    los deportes que puede practicar son:
+    futbol, baloncesto, voleibol, natación,
+    tenis y sus variantes, lanzamiento de
+    bala, béisbol, lanza dardos y billar.
+    """
 
 
 class ResultFrame(tk.Frame):
@@ -18,7 +62,6 @@ class ResultFrame(tk.Frame):
         names = ["{} - {}".format(index, user.name)
                  for index, user in enumerate(self.users)]
 
-        # tk.Label(self, bg='#ebac00', width=1000, height=561).place(x=0, y=0)
         tkvar = tk.StringVar(self)
         choices = names
         tkvar.set('')
@@ -183,7 +226,15 @@ class ResultFrame(tk.Frame):
             name = ["Arco", "Presilla", "Verticilo"]
             msg_pred_arr = ["Fuerza", "Velocidad",
                         "Coordinación motora"]
-            
+
+            large_msgs_predominancia = [arco_msg, presilla_msg, verticilo_msg]
+
+            large_msg_pred = large_msgs_predominancia[max_data]
+            if self.current_user.formula_digital == "wl":
+                large_msg_pred = wl_msg
+            elif self.current_user.formula_digital == "lw":
+                large_msg_pred = lw_msg
+
             msg_pred = msg_pred_arr[max_data]
             if data.count(may) > 1:
                 arr = []
@@ -246,11 +297,22 @@ class ResultFrame(tk.Frame):
                          width=43, **style).place(x=100, y=425)
 
             try:
-                tk.Label(self, text="Recomendacion 2:{}".format(recomendacion2["deporte"]), width=43,
+                tk.Label(self, text="Recomendacion 2: {}".format(recomendacion2["deporte"]), width=43,
                          **style).place(x=100, y=450)
             except Exception as e:
                 tk.Label(self, text="Recomendacion 2: No hay recomendacion",
                          width=43, **style).place(x=100, y=450)
+
+            small_font = ("Arial", "11", "bold italic")
+            small_style = {"bg": '#ebac00', "font": small_font} 
+
+            tk.Label(
+                self,
+                text=large_msg_pred,
+                width=43,
+                height=7,
+                **small_style
+            ).place(x=100, y=500) 
             
             # add refresh button to refresh the page
             tk.Button(self, text="Refrescar", command=lambda: self.refresh()).place(x=600, y=100)

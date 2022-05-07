@@ -108,7 +108,6 @@ class User:
 
         opcion1 = None
         opcion2 = None
-        param_1 = 1
         distancias = {}
 
         for item in tabla:
@@ -145,17 +144,21 @@ class User:
                             53.20, 46.10, 12.4, 97.8),
             User.item_tabla("Triatlon", 12, 12.00,
                             59.00, 29.00, 12.3, 118.6),
-            User.item_tabla("pilotos de Caza", 35, 2.00, 60.00, 38.00, 12.4, 99.2),
+            User.item_tabla("pilotos de Caza", 35, 2.00,
+                            60.00, 38.00, 12.4, 99.2),
             User.item_tabla("futsal", 12,
                             5.00, 69.20, 25.80, 15.3, 142.1),
             User.item_tabla("Atletismo", 7, 0.00,
                             45.70, 54.30, 10.9, 93),
             User.item_tabla("Esgrima", 5, 0.00, 46.00, 54.00, 11, 80.5),
-            User.item_tabla("futbol playa", 5, 0.00, 46.00, 54.00, 14.8, 131.5),
+            User.item_tabla("futbol playa", 5, 0.00,
+                            46.00, 54.00, 14.8, 131.5),
             User.item_tabla("raquet", 7, 0.00,
                             45.70, 54.30, 9, 93),
-            User.item_tabla("natacion velocidad", 5, 0.00, 46.00, 54.00, 12.3, 131.5),
-            User.item_tabla("natacion Fondo", 5, 0.00, 46.00, 54.00, 15.5, 131.5)
+            User.item_tabla("natacion velocidad", 5, 0.00,
+                            46.00, 54.00, 12.3, 131.5),
+            User.item_tabla("natacion Fondo", 5, 0.00,
+                            46.00, 54.00, 15.5, 131.5)
         ]
         # self.age = None
         self.name = None
@@ -227,7 +230,6 @@ class User:
         print("primer analisis: ", self.res_primer_analisis)
 
     def calculate_d10(self):
-        A = self.categ["arco"]
         L = self.categ["presilla"]
         W = self.categ["verticilo"]
         self.d10 = L + 2 * W
