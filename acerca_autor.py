@@ -1,17 +1,19 @@
 import tkinter as tk  # python 3
-from tkinter import font as tkfont  # python 3
+from tkinter import font as tkfont
+from turtle import title  # python 3
 from PIL import Image, ImageTk
 from network import Network
 from tkinter import messagebox
 from tkinter.ttk import Progressbar
 from tkinter import HORIZONTAL
 
-text_about = """Acerca del Autor
-Mi nombre es Luis Enrique Balboa Flores y soy estudiante de la Escuela Militar de Ingenieria,
-en el ultimo año de Ingenieria de sisitemas,
-este Proyecto fue realizado en python con tegnologias ApiRest en un servidor en la nube.
-El Proyecto se realizado en el Club Litoral dandole el agradecimineto al Pro. Diego Villena
-quien acepto gustoso la realizacion del proyecto.
+titulo = "Acerca del Autor"
+
+text_about = """Mi nombre es Luis Enrique Balboa Flores y soy estudiante de la Escuela militar
+de ingeniería, de último año de Ingeniería de Sistemas. Este proyecto fue
+realizado en Python, aplicando la arquitectura MovilNet para la identificación de
+huellas. El proyecto se realizó para el Club Litoral, agradeciendo al Pro. Diego
+Villena quien acepto la realización del proyecto su reconocida institución.
 """
 
 class AcercaDeAutor(tk.Frame):
@@ -49,16 +51,24 @@ class AcercaDeAutor(tk.Frame):
         
         tk.Label(
             self,
-            text=text_about,
-            font=("Arial", 15),
+            text=titulo,
+            font=("Arial", 15, "bold"),
             anchor="e",
             justify=tk.LEFT
         ).place(x=200, y=325)
 
+        tk.Label(
+            self,
+            text=text_about,
+            font=("Arial", 15),
+            anchor="e",
+            justify=tk.LEFT
+        ).place(x=200, y=350)
+
         tk.Button(
             self,
             highlightbackground='#FFC638',
-            text='Volver',
+            text='VOLVER',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: controller.show_frame("MainWindow")

@@ -125,8 +125,11 @@ class TakeHuella(tk.Frame):
 
     def refresh(self):
         self.current_user = User()
-        font = ("Arial", "12", "bold italic")
+        font = ("Arial", "12", "bold")
         tk.Label(self, bg='#ebac00', width=1000, height=561).place(x=0, y=0)
+        # SISTEMAS DE RECONOCIMIENTO DE PATRONES DACTILARES 
+        # BASADO EN LA TEORÍA DE DERMATOGLIFOS, PARA DETERMINAR LOS TALENTOS Y CAPASIDADES GENÉTICAS DE LOS DEPORTISTAS
+
         tk.Label(
             self,
             text="SISTEMA DE RECONOCIMENTO DE PATRONES DACTILARES",
@@ -137,7 +140,7 @@ class TakeHuella(tk.Frame):
         
         tk.Label(
             self,
-            text="BASADO EN LA TEORIA DE DERMATOGLIFIOS, PARA DETERMINAR",
+            text="BASADO EN LA TEORÍA DE DERMATOGLIFIOS, PARA DETERMINAR",
             bg='#ebac00',
             anchor="center",
             font=font
@@ -374,7 +377,7 @@ class TakeHuella(tk.Frame):
         bg.image = photoEmi
         bg.place(x=0, y=0)
 
-        tk.Button(newWindow, text="Capturar Huella", command=self.open_app).place(
+        tk.Button(newWindow, text="TOMA DE HUELLAS", command=self.open_app).place(
             relx=0.5, rely=0.3, anchor=tk.CENTER)
         tk.Button(newWindow, text="Aceptar y Continuar",
                   command=lambda: self.set_btn_valid(btn, newWindow, field)).place(

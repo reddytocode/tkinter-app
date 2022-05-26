@@ -38,7 +38,7 @@ class MainWindow(tk.Frame):
         tk.Button(
             self,
             highlightbackground='#FBFF00',
-            text='Carta Dermatoglifica',
+            text='Carta Dermatoglifica'.upper(),
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.controller.show_frame("ResultFrame")).place(x=30, y=30)
@@ -47,7 +47,7 @@ class MainWindow(tk.Frame):
         tk.Button(
             self,
             highlightbackground='#08FE04',
-            text='CAPTAR HUELLA',
+            text='TOMA DE HUELLAS',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.controller.show_frame("TakeHuella")
