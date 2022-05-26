@@ -222,7 +222,7 @@ class TakeHuella(tk.Frame):
 
         tk.Button(
             self,
-            text="Guardar",
+            text="GUARDAR",
             font=font,
             width=20,
             command=self.save
@@ -235,7 +235,7 @@ class TakeHuella(tk.Frame):
         tk.Button(
             self,
             highlightbackground='#FFC638',
-            text='Volver',
+            text='VOLVER',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: volver(self)
