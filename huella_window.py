@@ -169,7 +169,7 @@ class TakeHuella(tk.Frame):
         tk.Label(self, text="Apellidos:", font=font,
                  bg=orange).place(x=x, y=y(2))
         tk.Label(self, text="CI:", font=font, bg=orange).place(x=x, y=y(3))
-        tk.Label(self, text="Telefono:", font=font,
+        tk.Label(self, text="Teléfono:", font=font,
                  bg=orange).place(x=x, y=y(4))
 
         tk.Label(self, text="Genero:", font=font, bg=orange).place(x=x, y=y(5))
@@ -244,7 +244,7 @@ class TakeHuella(tk.Frame):
         tk.Button(
             self,
             highlightbackground='#FFC638',
-            text='Refresh',
+            text='REFRESCAR',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.refresh()
