@@ -309,7 +309,6 @@ class ResultFrame(tk.Frame):
                 self,
                 text=large_msg_pred,
                 width=43,
-                height=10,
                 **small_style
             ).place(x=100, y=500) 
             
