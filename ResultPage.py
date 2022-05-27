@@ -302,7 +302,7 @@ class ResultFrame(tk.Frame):
                 tk.Label(self, text="Recomendacion 2: No hay recomendacion".upper(),
                          width=43, **style).place(x=100, y=450)
 
-            small_font = ("Arial", "11", "bold")
+            small_font = ("Arial", "10", "bold")
             small_style = {"bg": '#ebac00', "font": small_font} 
 
             tk.Label(
