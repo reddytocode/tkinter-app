@@ -9,43 +9,45 @@ lw_msg = """
     Estos deportitas se centran naturalmente en
     generar la mayor poyencia con el menor peso
     corporal, manteniedo una alimentacion ideal
-    podran practicar Boxeo, lucha, carreras de caballo,
-    gimnasia y el salto de trampolin.
-    """
+    podran practicar Boxeo, lucha, carreras de
+    caballo, gimnasia y el salto de trampolin.
+    """.upper()
 
 wl_msg = """
     Los deportistas con resistencia y
     coordinación motora pasan largas horas
-    en entrenamientos y competiciones los deportes
-    ideales para ellos son las carreras de
-    distancia, triatletas, nadadores de fondo y
-    ciclistas.
-    """
+    en entrenamientos y competiciones los
+    deportes ideales para ellos son las carreras
+    de distancia, triatletas, nadadores de fondo
+    y ciclistas.
+    """.upper()
 arco_msg = """
-    Los deportistas que tiene huellas arco
-    requieren un esfuerzo máximo y en los deportes
-    que pueden practicar son: salto de altura,
-    carrera 100m, levantamiento de pesas,
-    lanzamientos, ciclismo en pista, baloncesto,
-    voleibol y futbol.
+    LOS DEPORTISTAS QUE TIENE LA CUALIDAD DE
+    FUERZA, TIENE LA CAPACIDAD DE GENERAR UNA
+    CONTRACCIÓN MUSCULAR SUPERIOR, LOS DEPORTES
+    QUE PUEDEN PRACTICAR SON: SALTO DE ALTURA,
+    CARRERA 100M, LEVANTAMIENTO DE PESAS,
+    LANZAMIENTOS, CICLISMO EN PISTA, BALONCESTO,
+    VOLEIBOL Y FUTBOL.
     """
 presilla_msg = """
-    La velocidad representa la capacidad
-    de realizar acciones corporales
-    en un mínimo tiempo y con eficiencia. 
-    Los reportes que puede practicar son:
-    futbol, baloncesto, artes marciales, 
-    tenis, gimnasia, boxeo, futbol americano y
-    la mayoría de pruebas de atletismo.
+    LOS DEPORTISTAS QUE TIENEN LA CUALIDAD DE
+    VELOCIDAD TIENE LA CAPACIDAD DE REALIZAR
+    ACCIONES CORPORALES EN UN MÍNIMO TIEMPO Y
+    CON EFICIENCIA, LOS DEPORTES QUE PUEDEN
+    PRACTICAR SON: FUTBOL, BALONCESTO,
+    ARTES MARCIALES, TENIS, GIMNASIA, BOXEO Y
+    LA MAYORÍA DE PRUEBAS DE ATLETISMO.
     """
 verticilo_msg = """
-    La coordinación en la combinación
-    física y motora que permite que el
-    individuo pueda moverse o realizar algo,
-    los deportes que puede practicar son:
-    futbol, baloncesto, voleibol, natación,
-    tenis y sus variantes, lanzamiento de
-    bala, béisbol, lanza dardos y billar.
+    LOS DEPORTISTAS QUE TIENEN LA CUALIDAD DE
+    COORDINACIÓN, TIENE UNA COMBINACIÓN FÍSICA
+    Y MOTORA QUE PERMITE AL INDIVIDUO REALIZAR
+    ALGO O MOVERSE DE UNA MANERA COORDINADA,
+    LOS DEPORTES QUE PUEDEN PRACTICAR SON:
+    FUTBOL, BALONCESTO, VOLEIBOL, NATACIÓN,
+    TENIS Y SUS VARIANTES, LANZAMIENTO DE BALA,
+    BÉISBOL, LANZA DARDOS Y BILLAR.
     """
 
 
@@ -242,7 +244,7 @@ class ResultFrame(tk.Frame):
             
             tk.Label(self, text="PREDOMINANCIAS QUE DEBERIA EXPLOTAR",
                      width=43, **style_ORANGE).place(x=100, y=325)
-            tk.Label(self, text=msg_pred, width=43, **style).place(x=100, y=350)
+            tk.Label(self, text=msg_pred.upper(), width=43, **style).place(x=100, y=350)
             
             X = [600, 625, 650]
 
@@ -287,17 +289,17 @@ class ResultFrame(tk.Frame):
             try:
                 deporte = recomendacion1["deporte"].title()
                 # string capital letters
-                tk.Label(self, text="Recomendacion 1:{}".format(deporte), width=43,
+                tk.Label(self, text="Recomendacion 1:{}".format(deporte).upper(), width=43,
                          **style).place(x=100, y=425)
             except Exception as e:
-                tk.Label(self, text="Recomendacion 1: No hay recomendacion",
+                tk.Label(self, text="Recomendacion 1: No hay recomendacion".upper(),
                          width=43, **style).place(x=100, y=425)
 
             try:
-                tk.Label(self, text="Recomendacion 2: {}".format(recomendacion2["deporte"]), width=43,
+                tk.Label(self, text="Recomendacion 2: {}".format(recomendacion2["deporte"]).upper(), width=43,
                          **style).place(x=100, y=450)
             except Exception as e:
-                tk.Label(self, text="Recomendacion 2: No hay recomendacion",
+                tk.Label(self, text="Recomendacion 2: No hay recomendacion".upper(),
                          width=43, **style).place(x=100, y=450)
 
             small_font = ("Arial", "11", "bold")
@@ -307,7 +309,7 @@ class ResultFrame(tk.Frame):
                 self,
                 text=large_msg_pred,
                 width=43,
-                height=7,
+                height=10,
                 **small_style
             ).place(x=100, y=500) 
             
