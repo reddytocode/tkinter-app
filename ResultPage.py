@@ -248,8 +248,8 @@ class ResultFrame(tk.Frame):
             
             X = [600, 625, 650]
 
-            c_width = 225  # Define it's width
-            c_height = 200  # Define it's height
+            c_width = 250  # Define it's width
+            c_height = 225  # Define it's height
             c = tk.Canvas(self, width=c_width, height=c_height, bg=style["bg"])
             c.place(x=600, y=300)
 
@@ -257,7 +257,7 @@ class ResultFrame(tk.Frame):
             y_stretch = 15  # The highest y = max_data_value * y_stretch
             y_gap = 20  # The gap between lower canvas edge and x axis
             x_stretch = 10  # Stretch x wide enough to fit the variables
-            x_width = 50  # The width of the x-axis
+            x_width = 60  # The width of the x-axis
             x_gap = 20  # The gap between left canvas edge and y axis
 
             # A quick for loop to calculate the rectangle
