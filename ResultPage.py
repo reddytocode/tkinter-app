@@ -73,7 +73,7 @@ class ResultFrame(tk.Frame):
         else:
             tk.Label(self, text="Aún no hay usuarios para mostrar",
                      bg='#ebac00', font=font).place(x=10, y=10)
-        tk.Label(self, text="RESUMEN CARACTERISTICAS",
+        tk.Label(self, text="RESUMEN CARACTERÍSTICAS",
                  **style_ORANGE).place(x=400, y=10)
 
         self.current_user = None
@@ -155,7 +155,7 @@ class ResultFrame(tk.Frame):
         tk.Button(
             self,
             highlightbackground='#FFC638',
-            text='Volver',
+            text='VOLVER',
             font=('Arial Rounded MT Bold', 14),
             width=20,
             command=lambda: self.controller.show_frame("MainWindow")
@@ -315,8 +315,8 @@ class ResultFrame(tk.Frame):
             ).place(x=100, y=500) 
             
             # add refresh button to refresh the page
-            tk.Button(self, text="Refrescar", command=lambda: self.refresh()).place(x=600, y=100)
+            tk.Button(self, text="REFRESCAR", command=lambda: self.refresh()).place(x=600, y=100)
 
-            tk.Button(self, bg='red', text="Borrar",
+            tk.Button(self, bg='red', text="BORRAR",
                       command=lambda: self.remove()).place(x=800, y=100)
             
