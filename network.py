@@ -68,7 +68,6 @@ class Network:
 
     @staticmethod
     def get_all():
-        print("getting all")
         ip = "http://127.0.0.1"
         path = "{}:5002/users".format(ip)
         req = requests.get(path)

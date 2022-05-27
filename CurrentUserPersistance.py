@@ -23,7 +23,6 @@ class Dedo:
 
     def is_valid(self):
         valid = self.category is not None
-        print("valid", self.category, "id", valid)
         return valid
 
 
@@ -227,7 +226,6 @@ class User:
         elif (W == 10):
             self.res_primer_analisis = "RESISTENCIA Y COORDINACION"
             self.formula_digital = "10W"
-        print("primer analisis: ", self.res_primer_analisis)
 
     def calculate_d10(self):
         L = self.categ["presilla"]

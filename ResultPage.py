@@ -55,11 +55,11 @@ class ResultFrame(tk.Frame):
         self.set_init()
         self.current_user = None
         self.setUserTable()
-        font = ("Arial", "12", "bold italic")
+        font = ("Arial", "12", "bold")
         style_ORANGE = {"bg": '#EB5E00', "font": font}
         self.users = Network.get_all()
-        print("usuarios cargados en memoria: ", len(self.users))
-        names = ["{} - {}".format(index, user.name)
+
+        names = ["{} - {}".format(index, user.name).upper()
                  for index, user in enumerate(self.users)]
 
         tkvar = tk.StringVar(self)
@@ -68,10 +68,10 @@ class ResultFrame(tk.Frame):
         if choices:
             popupMenu = tk.OptionMenu(self, tkvar, *choices)
             popupMenu.place(x=10, y=45)
-            tk.Label(self, text="Elija el usuario a mostrar",
+            tk.Label(self, text="Elija el usuario a mostrar".upper(),
                      bg='#ebac00', font=font).place(x=10, y=10)
         else:
-            tk.Label(self, text="Aún no hay usuarios para mostrar",
+            tk.Label(self, text="Aún no hay usuarios para mostrar".upper(),
                      bg='#ebac00', font=font).place(x=10, y=10)
         tk.Label(self, text="RESUMEN CARACTERÍSTICAS",
                  **style_ORANGE).place(x=400, y=10)
@@ -84,7 +84,6 @@ class ResultFrame(tk.Frame):
             index = genero_aux[0]
             self.current_user = self.users[int(index)]
             self.setUserTable()
-            print("chooosen", index)
 
         tkvar.trace('w', change_dropdown)
     
@@ -106,13 +105,12 @@ class ResultFrame(tk.Frame):
         self.set_init()
         
     def set_init(self):
-        font = ("Arial", "12", "bold italic")
+        font = ("Arial", "12", "bold")
         imageEmi = Image.open("image/fondopista.jpg")
         basewidth = self.base_width + 100
         style_ORANGE = {"bg": '#EB5E00', "font": font}
         wpercent = (basewidth / float(imageEmi.size[0]))
         hsize = int((float(imageEmi.size[1]) * float(wpercent)))
-        print("hsize: ", hsize)
         imageEmi = imageEmi.resize((basewidth, hsize), Image.ANTIALIAS)
         imageEmi_copy = imageEmi.copy()
         photoEmi = ImageTk.PhotoImage(imageEmi_copy)
@@ -148,7 +146,6 @@ class ResultFrame(tk.Frame):
             index = genero_aux[0]
             self.current_user = self.users[int(index)]
             self.setUserTable()
-            print("chooosen", index)
 
         tkvar.trace('w', change_dropdown)
 
@@ -162,7 +159,7 @@ class ResultFrame(tk.Frame):
         ).place(x=850, y=580)
 
     def setUserTable(self):
-        font = ("Arial", "12", "bold italic")
+        font = ("Arial", "12", "bold")
 
         if (self.current_user is not None):
             style = {"bg": '#ebac00', "font": font}
@@ -170,7 +167,7 @@ class ResultFrame(tk.Frame):
             
             full_name = f"{self.current_user.name} {self.current_user.lastName}".upper()
             tk.Label(self, width=43,
-                     text="Nombres y Apellidos:   {}".format(
+                     text="NOMBRES:   {}".format(
                         full_name),
                      **style).place(x=100, y=150)
             final_ci = self.current_user.ci if self.current_user.ci else "--------------"
@@ -178,11 +175,11 @@ class ResultFrame(tk.Frame):
                      text="CI:   {}".format(
                           final_ci), **style).place(x=100, y=175)
             tk.Label(self, width=43,
-                     text="Fecha Nacimiento:   {}".format(
+                     text="FECHA DE NACIMIENTO:   {}".format(
                           self.current_user.fechaNac), **style).place(x=100, y=200)
             final_telf = self.current_user.telf if self.current_user.telf else "--------------"
             tk.Label(self, width=43,
-                     text="Telf:   {}".format(
+                     text="TELF:   {}".format(
                           final_telf), **style).place(x=100, y=225)
             
             
@@ -303,7 +300,7 @@ class ResultFrame(tk.Frame):
                 tk.Label(self, text="Recomendacion 2: No hay recomendacion",
                          width=43, **style).place(x=100, y=450)
 
-            small_font = ("Arial", "11", "bold italic")
+            small_font = ("Arial", "11", "bold")
             small_style = {"bg": '#ebac00', "font": small_font} 
 
             tk.Label(

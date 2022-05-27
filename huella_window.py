@@ -111,7 +111,6 @@ class TakeHuella(tk.Frame):
         tk.Button(self.top, text="ok", command=self.print_sel).pack()
     
     def __init__(self, parent, controller):
-        print("init huella")
         tk.Frame.__init__(self, parent)
         self.controller = controller
         # window configuration
