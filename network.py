@@ -4,7 +4,7 @@ import io
 from PIL import Image
 from CurrentUserPersistance import User
 import time as t
-ip = "http://134.209.47.140"
+ip = "http://159.223.205.84"
 
 
 class Network:
