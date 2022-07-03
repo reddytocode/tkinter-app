@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 
 from CurrentUserPersistance import User
 from network import Network
+from generate_pdf import generate_pdf
+
 
 lw_msg = """
     Estos deportitas se centran naturalmente en
@@ -53,6 +55,9 @@ verticilo_msg = """LOS DEPORTISTAS QUE TIENEN LA CUALIDAD DE
 
 class ResultFrame(tk.Frame):
 
+    def imprimir(self):
+        generate_pdf(self.current_user)
+    
     def refresh(self):
         self.set_init()
         self.current_user = None
@@ -314,6 +319,7 @@ class ResultFrame(tk.Frame):
             
             # add refresh button to refresh the page
             tk.Button(self, text="REFRESCAR", command=lambda: self.refresh()).place(x=600, y=100)
+            tk.Button(self, text="IMPRIMIR", command=lambda: self.imprimir()).place(x=710, y=100)
 
             tk.Button(self, bg='red', text="BORRAR",
                       command=lambda: self.remove()).place(x=800, y=100)
